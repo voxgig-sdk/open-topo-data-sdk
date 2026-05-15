@@ -1,0 +1,31 @@
+# API Information
+
+
+main: {
+  kit: {
+    info: {
+      contact: {
+        url: "https://www.opentopodata.org"
+      }
+      description: "Open Topo Data is a REST API server that provides access to elevation data. Users can utilize the free public API or host their own server with customizable datasets."
+      license: {
+        name: "Open Source"
+        url: "https://github.com/ajnisbet/opentopodata"
+      }
+      servers: [
+        {
+          description: "Public API server"
+          url: "https://api.opentopodata.org/v1"
+        }
+        {
+          description: "Local development server"
+          url: "http://localhost:5000/v1"
+        }
+      ]
+      title: "Open Topo Data"
+      version: "1.0.0"
+    }
+  }
+}
+
+}

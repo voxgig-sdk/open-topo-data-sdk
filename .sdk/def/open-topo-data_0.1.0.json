@@ -1,0 +1,375 @@
+{
+  "openapi": "3.0.3",
+  "info": {
+    "title": "Open Topo Data",
+    "description": "Open Topo Data is a REST API server that provides access to elevation data. Users can utilize the free public API or host their own server with customizable datasets.",
+    "version": "1.0.0",
+    "contact": {
+      "url": "https://www.opentopodata.org"
+    },
+    "license": {
+      "name": "Open Source",
+      "url": "https://github.com/ajnisbet/opentopodata"
+    }
+  },
+  "servers": [
+    {
+      "url": "https://api.opentopodata.org/v1",
+      "description": "Public API server"
+    },
+    {
+      "url": "http://localhost:5000/v1",
+      "description": "Local development server"
+    }
+  ],
+  "paths": {
+    "/{dataset}": {
+      "get": {
+        "summary": "Get elevation data",
+        "description": "Returns the elevation at a single point or a series of points for the specified dataset. The API supports multiple interpolation algorithms and can accept locations in various formats including latitude/longitude pairs and Google Polyline format.",
+        "operationId": "getElevation",
+        "parameters": [
+          {
+            "name": "dataset",
+            "in": "path",
+            "required": true,
+            "description": "The name of the elevation dataset to query. Available datasets on the public API include: test-dataset, nzdem8m, ned10m, eudem25m, mapzen, aster30m, srtm30m, srtm90m, bkg200m, etopo1, gebco2020, emod2018",
+            "schema": {
+              "type": "string",
+              "enum": [
+                "test-dataset",
+                "nzdem8m",
+                "ned10m",
+                "eudem25m",
+                "mapzen",
+                "aster30m",
+                "srtm30m",
+                "srtm90m",
+                "bkg200m",
+                "etopo1",
+                "gebco2020",
+                "emod2018"
+              ],
+              "example": "test-dataset"
+            }
+          },
+          {
+            "name": "locations",
+            "in": "query",
+            "required": true,
+            "description": "The locations to query, provided as latitude,longitude pairs. Multiple locations can be separated by pipe characters (|). Maximum 100 locations per request on the public API. Example: 56.35,123.90 or 39.7471,-104.9963|40.7128,-74.0060",
+            "schema": {
+              "type": "string",
+              "example": "56.35,123.90"
+            }
+          },
+          {
+            "name": "interpolation",
+            "in": "query",
+            "required": false,
+            "description": "The interpolation algorithm to use for calculating elevation. Options may include bilinear, cubic, or nearest neighbor depending on server configuration.",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful response with elevation data",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "results": {
+                      "type": "array",
+                      "description": "Array of elevation results for each queried location",
+                      "items": {
+                        "type": "object",
+                        "properties": {
+                          "elevation": {
+                            "type": "number",
+                            "format": "float",
+                            "description": "The elevation in meters at the specified location",
+                            "example": 815
+                          },
+                          "location": {
+                            "type": "object",
+                            "description": "The location coordinates",
+                            "properties": {
+                              "lat": {
+                                "type": "number",
+                                "format": "double",
+                                "description": "Latitude coordinate",
+                                "example": 56
+                              },
+                              "lng": {
+                                "type": "number",
+                                "format": "double",
+                                "description": "Longitude coordinate",
+                                "example": 123
+                              }
+                            },
+                            "required": [
+                              "lat",
+                              "lng"
+                            ]
+                          },
+                          "dataset": {
+                            "type": "string",
+                            "description": "The dataset used for this elevation query",
+                            "example": "test-dataset"
+                          }
+                        },
+                        "required": [
+                          "elevation",
+                          "location",
+                          "dataset"
+                        ]
+                      }
+                    },
+                    "status": {
+                      "type": "string",
+                      "description": "Status of the API request",
+                      "example": "OK"
+                    }
+                  },
+                  "required": [
+                    "results",
+                    "status"
+                  ]
+                },
+                "examples": {
+                  "singleLocation": {
+                    "summary": "Single location query",
+                    "value": {
+                      "results": [
+                        {
+                          "elevation": 815,
+                          "location": {
+                            "lat": 56,
+                            "lng": 123
+                          },
+                          "dataset": "test-dataset"
+                        }
+                      ],
+                      "status": "OK"
+                    }
+                  },
+                  "multipleLocations": {
+                    "summary": "Multiple locations query",
+                    "value": {
+                      "results": [
+                        {
+                          "elevation": 1590,
+                          "location": {
+                            "lat": 39.7471,
+                            "lng": -104.9963
+                          },
+                          "dataset": "ned10m"
+                        },
+                        {
+                          "elevation": 1604,
+                          "location": {
+                            "lat": 39.7471,
+                            "lng": -104.9963
+                          },
+                          "dataset": "srtm30m"
+                        }
+                      ],
+                      "status": "OK"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad request - invalid parameters or too many locations",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "status": {
+                      "type": "string",
+                      "example": "INVALID_REQUEST"
+                    },
+                    "error": {
+                      "type": "string",
+                      "description": "Error message describing what went wrong",
+                      "example": "Maximum 100 locations per request"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Dataset not found or location not in dataset bounds",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "status": {
+                      "type": "string",
+                      "example": "NOT_FOUND"
+                    },
+                    "error": {
+                      "type": "string",
+                      "description": "Error message",
+                      "example": "Dataset not found or location not in dataset bounds"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "429": {
+            "description": "Rate limit exceeded",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "status": {
+                      "type": "string",
+                      "example": "RATE_LIMIT_EXCEEDED"
+                    },
+                    "error": {
+                      "type": "string",
+                      "description": "Rate limit error message",
+                      "example": "Max 1 call per second or max 1000 calls per day exceeded"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Internal server error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "status": {
+                      "type": "string",
+                      "example": "SERVER_ERROR"
+                    },
+                    "error": {
+                      "type": "string",
+                      "description": "Error message",
+                      "example": "An internal server error occurred"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        },
+        "tags": [
+          "Elevation"
+        ]
+      }
+    }
+  },
+  "components": {
+    "schemas": {
+      "ElevationResponse": {
+        "type": "object",
+        "properties": {
+          "results": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/ElevationResult"
+            }
+          },
+          "status": {
+            "type": "string",
+            "enum": [
+              "OK",
+              "INVALID_REQUEST",
+              "NOT_FOUND",
+              "RATE_LIMIT_EXCEEDED",
+              "SERVER_ERROR"
+            ]
+          }
+        },
+        "required": [
+          "results",
+          "status"
+        ]
+      },
+      "ElevationResult": {
+        "type": "object",
+        "properties": {
+          "elevation": {
+            "type": "number",
+            "format": "float",
+            "description": "Elevation in meters"
+          },
+          "location": {
+            "$ref": "#/components/schemas/Location"
+          },
+          "dataset": {
+            "type": "string",
+            "description": "Name of the dataset used"
+          }
+        },
+        "required": [
+          "elevation",
+          "location",
+          "dataset"
+        ]
+      },
+      "Location": {
+        "type": "object",
+        "properties": {
+          "lat": {
+            "type": "number",
+            "format": "double",
+            "description": "Latitude coordinate",
+            "minimum": -90,
+            "maximum": 90
+          },
+          "lng": {
+            "type": "number",
+            "format": "double",
+            "description": "Longitude coordinate",
+            "minimum": -180,
+            "maximum": 180
+          }
+        },
+        "required": [
+          "lat",
+          "lng"
+        ]
+      },
+      "ErrorResponse": {
+        "type": "object",
+        "properties": {
+          "status": {
+            "type": "string",
+            "description": "Error status code"
+          },
+          "error": {
+            "type": "string",
+            "description": "Detailed error message"
+          }
+        }
+      }
+    }
+  },
+  "tags": [
+    {
+      "name": "Elevation",
+      "description": "Elevation data query endpoints"
+    }
+  ],
+  "externalDocs": {
+    "description": "Full API Documentation",
+    "url": "https://www.opentopodata.org"
+  }
+}

@@ -1,0 +1,30 @@
+{
+  "existing": {
+    "get_elevation": {
+      "GET_ELEVATION00": {
+        "dataset": "s1e",
+        "elevation": 31,
+        "location": {}
+      },
+      "GET_ELEVATION01": {
+        "dataset": "s3c",
+        "elevation": 61,
+        "location": {}
+      },
+      "GET_ELEVATION02": {
+        "dataset": "s5a",
+        "elevation": 91,
+        "location": {}
+      }
+    }
+  },
+  "new": {
+    "get_elevation": {
+      "get_elevation_ref01": {
+        "dataset": "s78",
+        "elevation": 121,
+        "location": {}
+      }
+    }
+  }
+}

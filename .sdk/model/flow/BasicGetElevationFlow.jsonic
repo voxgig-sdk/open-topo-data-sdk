@@ -1,0 +1,26 @@
+# BasicGetElevationFlow
+
+main: kit: flow: BasicGetElevationFlow:
+{
+  entity: "get_elevation",
+  kind: "basic",
+  name: "BasicGetElevationFlow",
+  step: [
+    {
+      match: {
+        dataset: "dataset01"
+      }
+
+      op: "list",
+      valid: [
+        {
+          apply: "ItemExists",
+          def: {
+            ref: "get_elevation_ref01"
+          }
+        }
+      ]
+    }
+  ],
+  "key$": "BasicGetElevationFlow"
+}

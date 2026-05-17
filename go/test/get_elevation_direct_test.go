@@ -6,8 +6,8 @@ import (
 	"strings"
 	"testing"
 
-	sdk "github.com/voxgig-sdk/open-topo-data-sdk"
-	"github.com/voxgig-sdk/open-topo-data-sdk/core"
+	sdk "github.com/voxgig-sdk/open-topo-data-sdk/go"
+	"github.com/voxgig-sdk/open-topo-data-sdk/go/core"
 )
 
 func TestGetElevationDirect(t *testing.T) {

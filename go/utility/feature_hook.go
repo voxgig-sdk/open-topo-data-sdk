@@ -3,7 +3,7 @@ package utility
 import (
 	"reflect"
 
-	"github.com/voxgig-sdk/open-topo-data-sdk/core"
+	"github.com/voxgig-sdk/open-topo-data-sdk/go/core"
 )
 
 func featureHookUtil(ctx *core.Context, name string) {

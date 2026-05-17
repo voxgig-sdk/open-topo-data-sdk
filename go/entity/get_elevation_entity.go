@@ -1,9 +1,9 @@
 package entity
 
 import (
-	"github.com/voxgig-sdk/open-topo-data-sdk/core"
+	"github.com/voxgig-sdk/open-topo-data-sdk/go/core"
 
-	vs "github.com/voxgig/struct"
+	vs "github.com/voxgig-sdk/open-topo-data-sdk/go/utility/struct"
 )
 
 type GetElevationEntity struct {

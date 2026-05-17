@@ -1,7 +1,7 @@
 package feature
 
 import (
-	"github.com/voxgig-sdk/open-topo-data-sdk/core"
+	"github.com/voxgig-sdk/open-topo-data-sdk/go/core"
 )
 
 type BaseFeature struct {

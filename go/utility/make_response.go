@@ -1,6 +1,6 @@
 package utility
 
-import "github.com/voxgig-sdk/open-topo-data-sdk/core"
+import "github.com/voxgig-sdk/open-topo-data-sdk/go/core"
 
 func makeResponseUtil(ctx *core.Context) (*core.Response, error) {
 	if ctx.Out["response"] != nil {

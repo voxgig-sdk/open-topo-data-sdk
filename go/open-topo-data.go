@@ -1,10 +1,10 @@
 package voxgigopentopodatasdk
 
 import (
-	"github.com/voxgig-sdk/open-topo-data-sdk/core"
-	"github.com/voxgig-sdk/open-topo-data-sdk/entity"
-	"github.com/voxgig-sdk/open-topo-data-sdk/feature"
-	_ "github.com/voxgig-sdk/open-topo-data-sdk/utility"
+	"github.com/voxgig-sdk/open-topo-data-sdk/go/core"
+	"github.com/voxgig-sdk/open-topo-data-sdk/go/entity"
+	"github.com/voxgig-sdk/open-topo-data-sdk/go/feature"
+	_ "github.com/voxgig-sdk/open-topo-data-sdk/go/utility"
 )
 
 // Type aliases preserve external API.

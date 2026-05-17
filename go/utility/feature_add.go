@@ -1,6 +1,6 @@
 package utility
 
-import "github.com/voxgig-sdk/open-topo-data-sdk/core"
+import "github.com/voxgig-sdk/open-topo-data-sdk/go/core"
 
 func featureAddUtil(ctx *core.Context, f core.Feature) {
 	client := ctx.Client

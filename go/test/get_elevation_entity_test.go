@@ -9,10 +9,10 @@ import (
 	"testing"
 	"time"
 
-	sdk "github.com/voxgig-sdk/open-topo-data-sdk"
-	"github.com/voxgig-sdk/open-topo-data-sdk/core"
+	sdk "github.com/voxgig-sdk/open-topo-data-sdk/go"
+	"github.com/voxgig-sdk/open-topo-data-sdk/go/core"
 
-	vs "github.com/voxgig/struct"
+	vs "github.com/voxgig-sdk/open-topo-data-sdk/go/utility/struct"
 )
 
 func TestGetElevationEntity(t *testing.T) {

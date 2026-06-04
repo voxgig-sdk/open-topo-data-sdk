@@ -24,7 +24,17 @@
           }
         ],
         "title": "Open Topo Data",
-        "version": "1.0.0"
+        "version": "1.0.0",
+        "tagline": "Look up ground elevation at any latitude/longitude from a choice of open global and regional DEMs",
+        "homepage": "https://www.opentopodata.org/",
+        "docs_url": "https://www.opentopodata.org/",
+        "license_short": "Open source server; underlying datasets carry their own licences and attribution requirements",
+        "license_md": "- Open Topo Data is open source (maintained by ajnisbet on GitHub) and can be self-hosted.\n- The hosted public API at `api.opentopodata.org` is free to use within published fair-use limits.\n- Each elevation dataset (SRTM, ASTER, NED, EU-DEM, GEBCO, etc.) has its own licence and may require attribution when results are redistributed.\n- For commercial use, higher limits, or CORS-enabled access, the maintainer points to the paid GPXZ service.",
+        "about_md": "[Open Topo Data](https://www.opentopodata.org/) is a small REST API server that returns ground elevation for a given latitude and longitude. The hosted instance at `api.opentopodata.org` is run by the project's maintainer (ajnisbet) and is free for light public use; the same server software can be self-hosted against your own choice of datasets.\n\nWhat you get from the API:\n\n- A single endpoint shape, `GET /v1/{dataset}?locations={lat},{lng}|{lat},{lng}|...`, returning JSON elevations in metres.\n- A choice of global and regional digital elevation models, including SRTM (30 m and 90 m), ASTER (~30 m global), NED (~10 m USA), Mapzen (~30 m global with bathymetry), EU-DEM (25 m Europe), ETOPO1 and GEBCO2020 (global with bathymetry), NZ DEM (8 m New Zealand), plus BKG, Swisstopo and EMODnet.\n- Optional Google encoded polyline input and a configurable interpolation method (nearest, bilinear, cubic).\n\nOperational notes: the public API has documented fair-use limits of up to 100 locations per request, 1 call per second, and 1000 calls per day. No API key or authentication is required. CORS is not enabled on the public host, so browser-side calls need a proxy or the self-hosted/paid alternative.",
+        "entity_desc": {
+          "get_elevation": "Elevation lookups for one or more lat/lng points against a named DEM, served from `GET /v1/{dataset}?locations={lat},{lng}|...`."
+        },
+        "auth": false
       },
       "config": {
         "auth": {
@@ -32,7 +42,15 @@
         },
         "headers": {
           "content-type": "application/json"
-        }
+        },
+        "docs_order": [
+          "ts",
+          "py",
+          "php",
+          "go",
+          "rb",
+          "lua"
+        ]
       },
       "entity": {
         "get_elevation": {

@@ -118,14 +118,12 @@ func get_elevationDirectSetup(mockres any) *get_elevationDirectSetupResult {
 	env := envOverride(map[string]any{
 		"OPENTOPODATA_TEST_GET_ELEVATION_ENTID": map[string]any{},
 		"OPENTOPODATA_TEST_LIVE":    "FALSE",
-		"OPENTOPODATA_APIKEY":       "NONE",
 	})
 
 	live := env["OPENTOPODATA_TEST_LIVE"] == "TRUE"
 
 	if live {
 		mergedOpts := map[string]any{
-			"apikey": env["OPENTOPODATA_APIKEY"],
 		}
 		client := sdk.NewOpenTopoDataSDK(mergedOpts)
 

@@ -87,14 +87,12 @@ function directSetup(mockres?: any) {
   const env = envOverride({
     'OPENTOPODATA_TEST_GET_ELEVATION_ENTID': {},
     'OPENTOPODATA_TEST_LIVE': 'FALSE',
-    'OPENTOPODATA_APIKEY': 'NONE',
   })
 
   const live = 'TRUE' === env.OPENTOPODATA_TEST_LIVE
 
   if (live) {
     const client = new OpenTopoDataSDK({
-      apikey: env.OPENTOPODATA_APIKEY,
     })
 
     let idmap: any = env['OPENTOPODATA_TEST_GET_ELEVATION_ENTID']

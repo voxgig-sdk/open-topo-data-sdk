@@ -88,7 +88,6 @@ function get_elevation_basic_setup($extra)
         "OPENTOPODATA_TEST_GET_ELEVATION_ENTID" => $idmap,
         "OPENTOPODATA_TEST_LIVE" => "FALSE",
         "OPENTOPODATA_TEST_EXPLAIN" => "FALSE",
-        "OPENTOPODATA_APIKEY" => "NONE",
     ]);
 
     $idmap_resolved = Helpers::to_map(
@@ -100,7 +99,6 @@ function get_elevation_basic_setup($extra)
     if ($env["OPENTOPODATA_TEST_LIVE"] === "TRUE") {
         $merged_opts = Vs::merge([
             [
-                "apikey" => $env["OPENTOPODATA_APIKEY"],
             ],
             $extra ?? [],
         ]);

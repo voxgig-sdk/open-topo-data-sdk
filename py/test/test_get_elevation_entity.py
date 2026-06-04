@@ -94,7 +94,6 @@ def _get_elevation_basic_setup(extra):
         "OPENTOPODATA_TEST_GET_ELEVATION_ENTID": idmap,
         "OPENTOPODATA_TEST_LIVE": "FALSE",
         "OPENTOPODATA_TEST_EXPLAIN": "FALSE",
-        "OPENTOPODATA_APIKEY": "NONE",
     })
 
     idmap_resolved = helpers.to_map(
@@ -105,7 +104,6 @@ def _get_elevation_basic_setup(extra):
     if env.get("OPENTOPODATA_TEST_LIVE") == "TRUE":
         merged_opts = vs.merge([
             {
-                "apikey": env.get("OPENTOPODATA_APIKEY"),
             },
             extra or {},
         ])

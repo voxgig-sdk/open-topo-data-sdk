@@ -15,9 +15,6 @@ module OpenTopoDataConfig
       },
       "options" => {
         "base" => "https://api.opentopodata.org/v1",
-        "auth" => {
-          "prefix" => "Bearer",
-        },
         "headers" => {
           "content-type" => "application/json",
         },

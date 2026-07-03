@@ -1,47 +1,13 @@
 {
-  "name": "open-topo-data",
-  "origin": "voxgig-sdk",
   "def": "open-topo-data_0.1.0.json",
   "main": {
+    "def": {
+      "desc": ""
+    },
     "kit": {
-      "info": {
-        "contact": {
-          "url": "https://www.opentopodata.org"
-        },
-        "description": "Open Topo Data is a REST API server that provides access to elevation data. Users can utilize the free public API or host their own server with customizable datasets.",
-        "license": {
-          "name": "Open Source",
-          "url": "https://github.com/ajnisbet/opentopodata"
-        },
-        "servers": [
-          {
-            "description": "Public API server",
-            "url": "https://api.opentopodata.org/v1"
-          },
-          {
-            "description": "Local development server",
-            "url": "http://localhost:5000/v1"
-          }
-        ],
-        "title": "Open Topo Data",
-        "version": "1.0.0",
-        "tagline": "Look up ground elevation at any latitude/longitude from a choice of open global and regional DEMs",
-        "homepage": "https://www.opentopodata.org/",
-        "docs_url": "https://www.opentopodata.org/",
-        "license_short": "Open source server; underlying datasets carry their own licences and attribution requirements",
-        "license_md": "- Open Topo Data is open source (maintained by ajnisbet on GitHub) and can be self-hosted.\n- The hosted public API at `api.opentopodata.org` is free to use within published fair-use limits.\n- Each elevation dataset (SRTM, ASTER, NED, EU-DEM, GEBCO, etc.) has its own licence and may require attribution when results are redistributed.\n- For commercial use, higher limits, or CORS-enabled access, the maintainer points to the paid GPXZ service.",
-        "about_md": "[Open Topo Data](https://www.opentopodata.org/) is a small REST API server that returns ground elevation for a given latitude and longitude. The hosted instance at `api.opentopodata.org` is run by the project's maintainer (ajnisbet) and is free for light public use; the same server software can be self-hosted against your own choice of datasets.\n\nWhat you get from the API:\n\n- A single endpoint shape, `GET /v1/{dataset}?locations={lat},{lng}|{lat},{lng}|...`, returning JSON elevations in metres.\n- A choice of global and regional digital elevation models, including SRTM (30 m and 90 m), ASTER (~30 m global), NED (~10 m USA), Mapzen (~30 m global with bathymetry), EU-DEM (25 m Europe), ETOPO1 and GEBCO2020 (global with bathymetry), NZ DEM (8 m New Zealand), plus BKG, Swisstopo and EMODnet.\n- Optional Google encoded polyline input and a configurable interpolation method (nearest, bilinear, cubic).\n\nOperational notes: the public API has documented fair-use limits of up to 100 locations per request, 1 call per second, and 1000 calls per day. No API key or authentication is required. CORS is not enabled on the public host, so browser-side calls need a proxy or the self-hosted/paid alternative.",
-        "entity_desc": {
-          "get_elevation": "Elevation lookups for one or more lat/lng points against a named DEM, served from `GET /v1/{dataset}?locations={lat},{lng}|...`."
-        },
-        "auth": false
-      },
       "config": {
         "auth": {
           "prefix": "Bearer"
-        },
-        "headers": {
-          "content-type": "application/json"
         },
         "docs_order": [
           "ts",
@@ -50,68 +16,74 @@
           "go",
           "rb",
           "lua"
-        ]
+        ],
+        "headers": {
+          "content-type": "application/json"
+        }
       },
       "entity": {
         "get_elevation": {
+          "active": true,
           "alias": {
             "field": {}
           },
           "fields": [
             {
+              "active": true,
               "name": "dataset",
               "req": true,
-              "type": "`$STRING`",
-              "active": true
+              "type": "`$STRING`"
             },
             {
+              "active": true,
               "name": "elevation",
               "req": true,
-              "type": "`$NUMBER`",
-              "active": true
+              "type": "`$NUMBER`"
             },
             {
+              "active": true,
               "name": "location",
               "req": true,
-              "type": "`$OBJECT`",
-              "active": true
+              "type": "`$OBJECT`"
             }
           ],
           "name": "get_elevation",
           "op": {
             "list": {
+              "input": "data",
               "name": "list",
               "points": [
                 {
+                  "active": true,
                   "args": {
                     "params": [
                       {
+                        "active": true,
                         "example": "test-dataset",
                         "kind": "param",
                         "name": "id",
                         "orig": "dataset",
                         "reqd": true,
-                        "type": "`$STRING`",
-                        "active": true
+                        "type": "`$STRING`"
                       }
                     ],
                     "query": [
                       {
+                        "active": true,
                         "kind": "query",
                         "name": "interpolation",
                         "orig": "interpolation",
                         "reqd": false,
-                        "type": "`$STRING`",
-                        "active": true
+                        "type": "`$STRING`"
                       },
                       {
+                        "active": true,
                         "example": "56.35,123.90",
                         "kind": "query",
                         "name": "location",
                         "orig": "location",
                         "reqd": true,
-                        "type": "`$STRING`",
-                        "active": true
+                        "type": "`$STRING`"
                       }
                     ]
                   },
@@ -135,14 +107,11 @@
                   "transform": {
                     "req": "`reqdata`",
                     "res": "`body`"
-                  },
-                  "active": true
+                  }
                 }
-              ],
-              "input": "data"
+              ]
             }
           },
-          "active": true,
           "relations": {
             "ancestors": []
           }
@@ -150,9 +119,6 @@
       },
       "feature": {
         "test": {
-          "name": "test",
-          "title": "In-memory mock transport for testing without a live server",
-          "version": "0.0.1",
           "active": true,
           "config": {
             "options": {
@@ -160,6 +126,14 @@
             }
           },
           "hook": {
+            "GetData": {
+              "active": true,
+              "await": false
+            },
+            "GetMatch": {
+              "active": true,
+              "await": false
+            },
             "PostConstruct": {
               "active": true,
               "await": false
@@ -168,25 +142,11 @@
               "active": true,
               "await": false
             },
-            "SetData": {
-              "active": true,
-              "await": false
-            },
-            "GetData": {
-              "active": true,
-              "await": false
-            },
-            "SetMatch": {
-              "active": true
-            },
-            "GetMatch": {
-              "active": true,
+            "PostOperation": {
+              "active": false,
               "await": false
             },
             "PrePoint": {
-              "active": true
-            },
-            "PreSpec": {
               "active": true,
               "await": false
             },
@@ -202,20 +162,32 @@
               "active": true,
               "await": false
             },
+            "PreSpec": {
+              "active": true,
+              "await": false
+            },
             "PreTarget": {
               "active": false,
               "await": false
             },
-            "PostOperation": {
-              "active": false,
+            "SetData": {
+              "active": true,
+              "await": false
+            },
+            "SetMatch": {
+              "active": true,
               "await": false
             }
           },
+          "name": "test",
           "target": {
-            "ts": {
+            "go": {
               "deps": {}
             },
-            "go": {
+            "go-cli": {
+              "deps": {}
+            },
+            "go-mcp": {
               "deps": {}
             },
             "lua": {
@@ -230,26 +202,32 @@
             "rb": {
               "deps": {}
             },
-            "go-cli": {
-              "deps": {}
-            },
-            "go-mcp": {
+            "ts": {
               "deps": {}
             }
-          }
+          },
+          "title": "In-memory mock transport for testing without a live server",
+          "version": "0.0.1"
         }
       },
       "flow": {
         "BasicGetElevationFlow": {
+          "active": true,
           "entity": "get_elevation",
+          "key$": "BasicGetElevationFlow",
           "kind": "basic",
           "name": "BasicGetElevationFlow",
+          "param": {},
           "step": [
             {
+              "active": true,
+              "data": {},
+              "input": {},
               "match": {
                 "dataset": "dataset01"
               },
               "op": "list",
+              "spec": [],
               "valid": [
                 {
                   "apply": "ItemExists",
@@ -257,28 +235,60 @@
                     "ref": "get_elevation_ref01"
                   }
                 }
-              ],
-              "active": true,
-              "data": {},
-              "input": {},
-              "spec": []
+              ]
             }
-          ],
-          "key$": "BasicGetElevationFlow",
-          "active": true,
-          "param": {}
+          ]
         }
       },
+      "info": {
+        "contact": {
+          "url": "https://www.opentopodata.org"
+        },
+        "description": "Open Topo Data is a REST API server that provides access to elevation data. Users can utilize the free public API or host their own server with customizable datasets.",
+        "license": {
+          "name": "Open Source",
+          "url": "https://github.com/ajnisbet/opentopodata"
+        },
+        "servers": [
+          {
+            "description": "Public API server",
+            "url": "https://api.opentopodata.org/v1"
+          },
+          {
+            "description": "Local development server",
+            "url": "http://localhost:5000/v1"
+          }
+        ],
+        "title": "Open Topo Data",
+        "version": "1.0.0"
+      },
+      "option": {},
       "target": {
-        "go-cli": {
-          "title": "Go CLI",
-          "ext": "go",
+        "go": {
+          "active": true,
           "comment": {
             "line": "//"
           },
+          "deps": {},
+          "ext": "go",
           "module": {
             "name": "open-topo-data"
           },
+          "name": "go",
+          "srcfeature": false,
+          "title": "Golang"
+        },
+        "go-cli": {
+          "active": true,
+          "comment": {
+            "line": "//"
+          },
+          "deps": {},
+          "ext": "go",
+          "module": {
+            "name": "open-topo-data"
+          },
+          "name": "go-cli",
           "phase": {
             "entity": {
               "active": false
@@ -293,19 +303,19 @@
               "active": false
             }
           },
-          "deps": {},
-          "name": "go-cli",
-          "active": true
+          "title": "Go CLI"
         },
         "go-mcp": {
-          "title": "Go MCP server",
-          "ext": "go",
+          "active": true,
           "comment": {
             "line": "//"
           },
+          "deps": {},
+          "ext": "go",
           "module": {
             "name": "open-topo-data"
           },
+          "name": "go-mcp",
           "phase": {
             "entity": {
               "active": false
@@ -320,138 +330,120 @@
               "active": false
             }
           },
-          "deps": {},
-          "name": "go-mcp",
-          "active": true
-        },
-        "ts": {
-          "title": "TypeScript",
-          "ext": "ts",
-          "comment": {
-            "line": "//"
-          },
-          "module": {
-            "name": "open-topo-data"
-          },
-          "base": "node_modules/@voxgig/sdkgen/project/.sdk",
-          "deps": {
-            "dotenv": {
-              "active": true,
-              "version": "^17.4.2",
-              "kind": "dev"
-            },
-            "typescript": {
-              "active": true,
-              "version": "^5.9.3",
-              "kind": "dev"
-            },
-            "@types/node": {
-              "active": true,
-              "version": "^25.6.0",
-              "kind": "dev"
-            }
-          },
-          "name": "ts",
-          "active": true
-        },
-        "go": {
-          "title": "Golang",
-          "ext": "go",
-          "comment": {
-            "line": "//"
-          },
-          "module": {
-            "name": "open-topo-data"
-          },
-          "srcfeature": false,
-          "deps": {},
-          "name": "go",
-          "active": true
+          "title": "Go MCP server"
         },
         "lua": {
-          "title": "Lua",
-          "ext": "lua",
+          "active": true,
           "comment": {
             "line": "--"
           },
-          "module": {
-            "name": "open-topo-data"
-          },
-          "srcfeature": false,
           "deps": {
             "dkjson": {
               "active": true,
-              "version": "2.5",
-              "kind": "prod"
+              "kind": "prod",
+              "version": "2.5"
             }
           },
+          "ext": "lua",
+          "module": {
+            "name": "open-topo-data"
+          },
           "name": "lua",
-          "active": true
+          "srcfeature": false,
+          "title": "Lua"
         },
         "php": {
-          "title": "PHP",
-          "ext": "php",
+          "active": true,
           "comment": {
             "line": "//"
           },
+          "deps": {},
+          "ext": "php",
           "module": {
             "name": "open-topo-data"
           },
-          "srcfeature": false,
-          "deps": {},
           "name": "php",
-          "active": true
+          "srcfeature": false,
+          "title": "PHP"
         },
         "py": {
-          "title": "Python",
-          "ext": "py",
+          "active": true,
           "comment": {
             "line": "#"
           },
-          "module": {
-            "name": "open-topo-data"
-          },
-          "srcfeature": false,
           "deps": {
             "requests": {
               "active": true,
-              "version": "2.33",
-              "kind": "prod"
+              "kind": "prod",
+              "version": "2.33"
             }
           },
-          "name": "py",
-          "active": true
-        },
-        "rb": {
-          "title": "Ruby",
-          "ext": "rb",
-          "comment": {
-            "line": "#"
-          },
+          "ext": "py",
           "module": {
             "name": "open-topo-data"
           },
+          "name": "py",
           "srcfeature": false,
+          "title": "Python"
+        },
+        "rb": {
+          "active": true,
+          "comment": {
+            "line": "#"
+          },
           "deps": {
-            "voxgig-struct": {
-              "active": true,
-              "version": "0.0.10",
-              "kind": "prod"
-            },
             "json": {
               "active": true,
-              "version": "0",
-              "kind": "prod"
+              "kind": "prod",
+              "version": "0"
+            },
+            "voxgig-struct": {
+              "active": true,
+              "kind": "prod",
+              "version": "0.0.10"
             }
           },
+          "ext": "rb",
+          "module": {
+            "name": "open-topo-data"
+          },
           "name": "rb",
-          "active": true
+          "srcfeature": false,
+          "title": "Ruby"
+        },
+        "ts": {
+          "active": true,
+          "base": "node_modules/@voxgig/sdkgen/project/.sdk",
+          "comment": {
+            "line": "//"
+          },
+          "deps": {
+            "@types/node": {
+              "active": true,
+              "kind": "dev",
+              "version": "^25.6.0"
+            },
+            "dotenv": {
+              "active": true,
+              "kind": "dev",
+              "version": "^17.4.2"
+            },
+            "typescript": {
+              "active": true,
+              "kind": "dev",
+              "version": "^5.9.3"
+            }
+          },
+          "ext": "ts",
+          "module": {
+            "name": "open-topo-data"
+          },
+          "name": "ts",
+          "title": "TypeScript"
         }
-      },
-      "option": {}
-    },
-    "def": {
-      "desc": ""
+      }
     }
-  }
+  },
+  "name": "open-topo-data",
+  "origin": "voxgig-sdk"
 }

@@ -77,12 +77,14 @@ function get_elevation_direct_setup(mockres)
   local env = runner.env_override({
     ["OPENTOPODATA_TEST_GET_ELEVATION_ENTID"] = {},
     ["OPENTOPODATA_TEST_LIVE"] = "FALSE",
+    ["OPENTOPODATA_APIKEY"] = "NONE",
   })
 
   local live = env["OPENTOPODATA_TEST_LIVE"] == "TRUE"
 
   if live then
     local merged_opts = {
+      apikey = env["OPENTOPODATA_APIKEY"],
     }
     local client = sdk.new(merged_opts)
     return {

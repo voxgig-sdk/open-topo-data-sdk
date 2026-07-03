@@ -14,6 +14,9 @@ func MakeConfig() map[string]any {
 		},
 		"options": map[string]any{
 			"base": "https://api.opentopodata.org/v1",
+			"auth": map[string]any{
+				"prefix": "Bearer",
+			},
 			"headers": map[string]any{
 				"content-type": "application/json",
 			},
@@ -25,62 +28,64 @@ func MakeConfig() map[string]any {
 			"get_elevation": map[string]any{
 				"fields": []any{
 					map[string]any{
+						"active": true,
 						"name": "dataset",
 						"req": true,
 						"type": "`$STRING`",
-						"active": true,
 						"index$": 0,
 					},
 					map[string]any{
+						"active": true,
 						"name": "elevation",
 						"req": true,
 						"type": "`$NUMBER`",
-						"active": true,
 						"index$": 1,
 					},
 					map[string]any{
+						"active": true,
 						"name": "location",
 						"req": true,
 						"type": "`$OBJECT`",
-						"active": true,
 						"index$": 2,
 					},
 				},
 				"name": "get_elevation",
 				"op": map[string]any{
 					"list": map[string]any{
+						"input": "data",
 						"name": "list",
 						"points": []any{
 							map[string]any{
+								"active": true,
 								"args": map[string]any{
 									"params": []any{
 										map[string]any{
+											"active": true,
 											"example": "test-dataset",
 											"kind": "param",
 											"name": "id",
 											"orig": "dataset",
 											"reqd": true,
 											"type": "`$STRING`",
-											"active": true,
 										},
 									},
 									"query": []any{
 										map[string]any{
+											"active": true,
 											"kind": "query",
 											"name": "interpolation",
 											"orig": "interpolation",
 											"reqd": false,
 											"type": "`$STRING`",
-											"active": true,
 										},
 										map[string]any{
+											"active": true,
 											"example": "56.35,123.90",
 											"kind": "query",
 											"name": "location",
 											"orig": "location",
 											"reqd": true,
 											"type": "`$STRING`",
-											"active": true,
 										},
 									},
 								},
@@ -105,11 +110,9 @@ func MakeConfig() map[string]any {
 									"req": "`reqdata`",
 									"res": "`body`",
 								},
-								"active": true,
 								"index$": 0,
 							},
 						},
-						"input": "data",
 						"key$": "list",
 					},
 				},

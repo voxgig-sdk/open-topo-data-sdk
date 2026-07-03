@@ -20,6 +20,9 @@ class OpenTopoDataConfig
             ],
             "options" => [
                 "base" => "https://api.opentopodata.org/v1",
+                "auth" => [
+                    "prefix" => "Bearer",
+                ],
                 "headers" => [
           'content-type' => 'application/json',
         ],
@@ -31,62 +34,64 @@ class OpenTopoDataConfig
         'get_elevation' => [
           'fields' => [
             [
+              'active' => true,
               'name' => 'dataset',
               'req' => true,
               'type' => '`$STRING`',
-              'active' => true,
               'index$' => 0,
             ],
             [
+              'active' => true,
               'name' => 'elevation',
               'req' => true,
               'type' => '`$NUMBER`',
-              'active' => true,
               'index$' => 1,
             ],
             [
+              'active' => true,
               'name' => 'location',
               'req' => true,
               'type' => '`$OBJECT`',
-              'active' => true,
               'index$' => 2,
             ],
           ],
           'name' => 'get_elevation',
           'op' => [
             'list' => [
+              'input' => 'data',
               'name' => 'list',
               'points' => [
                 [
+                  'active' => true,
                   'args' => [
                     'params' => [
                       [
+                        'active' => true,
                         'example' => 'test-dataset',
                         'kind' => 'param',
                         'name' => 'id',
                         'orig' => 'dataset',
                         'reqd' => true,
                         'type' => '`$STRING`',
-                        'active' => true,
                       ],
                     ],
                     'query' => [
                       [
+                        'active' => true,
                         'kind' => 'query',
                         'name' => 'interpolation',
                         'orig' => 'interpolation',
                         'reqd' => false,
                         'type' => '`$STRING`',
-                        'active' => true,
                       ],
                       [
+                        'active' => true,
                         'example' => '56.35,123.90',
                         'kind' => 'query',
                         'name' => 'location',
                         'orig' => 'location',
                         'reqd' => true,
                         'type' => '`$STRING`',
-                        'active' => true,
                       ],
                     ],
                   ],
@@ -111,11 +116,9 @@ class OpenTopoDataConfig
                     'req' => '`reqdata`',
                     'res' => '`body`',
                   ],
-                  'active' => true,
                   'index$' => 0,
                 ],
               ],
-              'input' => 'data',
               'key$' => 'list',
             ],
           ],

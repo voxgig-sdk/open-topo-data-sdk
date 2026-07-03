@@ -82,12 +82,14 @@ function get_elevation_direct_setup($mockres)
     $env = Runner::env_override([
         "OPENTOPODATA_TEST_GET_ELEVATION_ENTID" => [],
         "OPENTOPODATA_TEST_LIVE" => "FALSE",
+        "OPENTOPODATA_APIKEY" => "NONE",
     ]);
 
     $live = $env["OPENTOPODATA_TEST_LIVE"] === "TRUE";
 
     if ($live) {
         $merged_opts = [
+            "apikey" => $env["OPENTOPODATA_APIKEY"],
         ];
         $client = new OpenTopoDataSDK($merged_opts);
         return [

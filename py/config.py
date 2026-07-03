@@ -15,6 +15,9 @@ def make_config():
         },
         "options": {
             "base": "https://api.opentopodata.org/v1",
+            "auth": {
+                "prefix": "Bearer",
+            },
             "headers": {
         "content-type": "application/json",
       },
@@ -26,62 +29,64 @@ def make_config():
       "get_elevation": {
         "fields": [
           {
+            "active": True,
             "name": "dataset",
             "req": True,
             "type": "`$STRING`",
-            "active": True,
             "index$": 0,
           },
           {
+            "active": True,
             "name": "elevation",
             "req": True,
             "type": "`$NUMBER`",
-            "active": True,
             "index$": 1,
           },
           {
+            "active": True,
             "name": "location",
             "req": True,
             "type": "`$OBJECT`",
-            "active": True,
             "index$": 2,
           },
         ],
         "name": "get_elevation",
         "op": {
           "list": {
+            "input": "data",
             "name": "list",
             "points": [
               {
+                "active": True,
                 "args": {
                   "params": [
                     {
+                      "active": True,
                       "example": "test-dataset",
                       "kind": "param",
                       "name": "id",
                       "orig": "dataset",
                       "reqd": True,
                       "type": "`$STRING`",
-                      "active": True,
                     },
                   ],
                   "query": [
                     {
+                      "active": True,
                       "kind": "query",
                       "name": "interpolation",
                       "orig": "interpolation",
                       "reqd": False,
                       "type": "`$STRING`",
-                      "active": True,
                     },
                     {
+                      "active": True,
                       "example": "56.35,123.90",
                       "kind": "query",
                       "name": "location",
                       "orig": "location",
                       "reqd": True,
                       "type": "`$STRING`",
-                      "active": True,
                     },
                   ],
                 },
@@ -106,11 +111,9 @@ def make_config():
                   "req": "`reqdata`",
                   "res": "`body`",
                 },
-                "active": True,
                 "index$": 0,
               },
             ],
-            "input": "data",
             "key$": "list",
           },
         },

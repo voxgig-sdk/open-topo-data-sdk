@@ -1,20 +1,8 @@
 # OpenTopoData SDK
 
-Look up ground elevation at any latitude/longitude from a choice of open global and regional DEMs
+Open Topo Data client, generated from the OpenAPI spec.
 
 > TypeScript, Python, PHP, Golang, Ruby, Lua SDKs, a CLI, an interactive REPL, and an MCP server for AI agents — all generated from one OpenAPI spec by [@voxgig/sdkgen](https://github.com/voxgig/sdkgen).
-
-## About Open Topo Data
-
-[Open Topo Data](https://www.opentopodata.org/) is a small REST API server that returns ground elevation for a given latitude and longitude. The hosted instance at `api.opentopodata.org` is run by the project's maintainer (ajnisbet) and is free for light public use; the same server software can be self-hosted against your own choice of datasets.
-
-What you get from the API:
-
-- A single endpoint shape, `GET /v1/{dataset}?locations={lat},{lng}|{lat},{lng}|...`, returning JSON elevations in metres.
-- A choice of global and regional digital elevation models, including SRTM (30 m and 90 m), ASTER (~30 m global), NED (~10 m USA), Mapzen (~30 m global with bathymetry), EU-DEM (25 m Europe), ETOPO1 and GEBCO2020 (global with bathymetry), NZ DEM (8 m New Zealand), plus BKG, Swisstopo and EMODnet.
-- Optional Google encoded polyline input and a configurable interpolation method (nearest, bilinear, cubic).
-
-Operational notes: the public API has documented fair-use limits of up to 100 locations per request, 1 call per second, and 1000 calls per day. No API key or authentication is required. CORS is not enabled on the public host, so browser-side calls need a proxy or the self-hosted/paid alternative.
 
 ## Try it
 
@@ -48,29 +36,31 @@ gem install open-topo-data-sdk
 luarocks install open-topo-data-sdk
 ```
 
-## 30-second quickstart
+## Quickstart
 
 ### TypeScript
 
 ```ts
 import { OpenTopoDataSDK } from 'open-topo-data'
 
-const client = new OpenTopoDataSDK({})
+const client = new OpenTopoDataSDK({
+  apikey: process.env.OPEN-TOPO-DATA_APIKEY,
+})
 
 // List all getelevations
 const getelevations = await client.GetElevation().list()
+console.log(getelevations.data)
 ```
 
-See the [TypeScript README](ts/README.md) for the
-full guide, or scroll down for the same example in other languages.
+See the [TypeScript README](ts/README.md) for the full guide.
 
-## What's in the box
+## Surfaces
 
-| Surface | Use it for | Path |
-| --- | --- | --- |
-| **SDK** (TypeScript, Python, PHP, Golang, Ruby, Lua) | App integration | `ts/` `py/` `php/` `go/` `rb/` `lua/` |
-| **CLI** | Scripts, CI, ops, one-off API calls | `go-cli/` |
-| **MCP server** | AI agents (Claude, Cursor, Cline) | `go-mcp/` |
+| Surface | Path |
+| --- | --- |
+| **SDK** (TypeScript, Python, PHP, Golang, Ruby, Lua) | `ts/` `py/` `php/` `go/` `rb/` `lua/` |
+| **CLI** | `go-cli/` |
+| **MCP server** | `go-mcp/` |
 
 ## Use it from an AI agent (MCP)
 
@@ -100,7 +90,7 @@ The API exposes one entity:
 
 | Entity | Description | API path |
 | --- | --- | --- |
-| **GetElevation** | Elevation lookups for one or more lat/lng points against a named DEM, served from `GET /v1/{dataset}?locations={lat},{lng}|...`. | `/{dataset}` |
+| **GetElevation** |  | `/{dataset}` |
 
 Each entity supports the following operations where available: **load**,
 **list**, **create**, **update**, and **remove**.
@@ -110,12 +100,16 @@ Each entity supports the following operations where available: **load**,
 ### Python
 
 ```python
+import os
 from opentopodata_sdk import OpenTopoDataSDK
 
-client = OpenTopoDataSDK({})
+client = OpenTopoDataSDK({
+    "apikey": os.environ.get("OPEN-TOPO-DATA_APIKEY"),
+})
 
 # List all getelevations
-getelevations, err = client.GetElevation(None).list(None, None)
+getelevations, err = client.GetElevation().list()
+print(getelevations)
 ```
 
 ### PHP
@@ -124,10 +118,13 @@ getelevations, err = client.GetElevation(None).list(None, None)
 <?php
 require_once 'opentopodata_sdk.php';
 
-$client = new OpenTopoDataSDK([]);
+$client = new OpenTopoDataSDK([
+    "apikey" => getenv("OPEN-TOPO-DATA_APIKEY"),
+]);
 
 // List all getelevations
-[$getelevations, $err] = $client->GetElevation(null)->list(null, null);
+[$getelevations, $err] = $client->GetElevation()->list();
+print_r($getelevations);
 ```
 
 ### Golang
@@ -135,10 +132,13 @@ $client = new OpenTopoDataSDK([]);
 ```go
 import sdk "github.com/voxgig-sdk/open-topo-data-sdk/go"
 
-client := sdk.NewOpenTopoDataSDK(map[string]any{})
+client := sdk.NewOpenTopoDataSDK(map[string]any{
+    "apikey": os.Getenv("OPEN-TOPO-DATA_APIKEY"),
+})
 
 // List all getelevations
 getelevations, err := client.GetElevation(nil).List(nil, nil)
+fmt.Println(getelevations)
 ```
 
 ### Ruby
@@ -146,10 +146,13 @@ getelevations, err := client.GetElevation(nil).List(nil, nil)
 ```ruby
 require_relative "OpenTopoData_sdk"
 
-client = OpenTopoDataSDK.new({})
+client = OpenTopoDataSDK.new({
+  "apikey" => ENV["OPEN-TOPO-DATA_APIKEY"],
+})
 
 # List all getelevations
-getelevations, err = client.GetElevation(nil).list(nil, nil)
+getelevations, err = client.GetElevation().list
+puts getelevations
 ```
 
 ### Lua
@@ -157,10 +160,13 @@ getelevations, err = client.GetElevation(nil).list(nil, nil)
 ```lua
 local sdk = require("open-topo-data_sdk")
 
-local client = sdk.new({})
+local client = sdk.new({
+  apikey = os.getenv("OPEN-TOPO-DATA_APIKEY"),
+})
 
 -- List all getelevations
-local getelevations, err = client:GetElevation(nil):list(nil, nil)
+local getelevations, err = client:GetElevation():list()
+print(getelevations)
 ```
 
 ## Unit testing in offline mode
@@ -179,25 +185,21 @@ const result = await client.GetElevation().load({ id: 'test01' })
 ### Python
 
 ```python
-client = OpenTopoDataSDK.test(None, None)
-result, err = client.GetElevation(None).load(
-    {"id": "test01"}, None
-)
+client = OpenTopoDataSDK.test()
+result, err = client.GetElevation().load({"id": "test01"})
 ```
 
 ### PHP
 
 ```php
-$client = OpenTopoDataSDK::test(null, null);
-[$result, $err] = $client->GetElevation(null)->load(
-    ["id" => "test01"], null
-);
+$client = OpenTopoDataSDK::test();
+[$result, $err] = $client->GetElevation()->load(["id" => "test01"]);
 ```
 
 ### Golang
 
 ```go
-client := sdk.TestSDK(nil, nil)
+client := sdk.Test()
 result, err := client.GetElevation(nil).Load(
     map[string]any{"id": "test01"}, nil,
 )
@@ -206,19 +208,15 @@ result, err := client.GetElevation(nil).Load(
 ### Ruby
 
 ```ruby
-client = OpenTopoDataSDK.test(nil, nil)
-result, err = client.GetElevation(nil).load(
-  { "id" => "test01" }, nil
-)
+client = OpenTopoDataSDK.test
+result, err = client.GetElevation().load({ "id" => "test01" })
 ```
 
 ### Lua
 
 ```lua
-local client = sdk.test(nil, nil)
-local result, err = client:GetElevation(nil):load(
-  { id = "test01" }, nil
-)
+local client = sdk.test()
+local result, err = client:GetElevation():load({ id = "test01" })
 ```
 
 ## How it works
@@ -322,15 +320,6 @@ local result, err = client:direct({
 - [Golang](go/README.md)
 - [Ruby](rb/README.md)
 - [Lua](lua/README.md)
-
-## Using the Open Topo Data
-
-- Upstream: [https://www.opentopodata.org/](https://www.opentopodata.org/)
-
-- Open Topo Data is open source (maintained by ajnisbet on GitHub) and can be self-hosted.
-- The hosted public API at `api.opentopodata.org` is free to use within published fair-use limits.
-- Each elevation dataset (SRTM, ASTER, NED, EU-DEM, GEBCO, etc.) has its own licence and may require attribution when results are redistributed.
-- For commercial use, higher limits, or CORS-enabled access, the maintainer points to the paid GPXZ service.
 
 ---
 

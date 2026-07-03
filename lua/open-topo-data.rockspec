@@ -8,12 +8,14 @@ source = {
   dir = "open-topo-data-sdk/lua"
 }
 description = {
-  summary = "OpenTopoData SDK for Lua",
-  license = "MIT"
+  summary = "Unofficial generated Lua SDK for the Open Topo Data public API. Not affiliated with or endorsed by the upstream API provider.",
+  homepage = "https://github.com/voxgig-sdk/open-topo-data-sdk",
+  issues_url = "https://github.com/voxgig-sdk/open-topo-data-sdk/issues",
+  license = "MIT",
+  labels = { "voxgig", "sdk", "generated-sdk", "openapi", "api-client", "open-topo-data" }
 }
 dependencies = {
   "lua >= 5.3",
-  "dkjson >= 2.5",
   "dkjson >= 2.5",
 }
 build = {

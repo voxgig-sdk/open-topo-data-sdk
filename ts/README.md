@@ -10,7 +10,7 @@ The TypeScript SDK for the OpenTopoData API — a type-safe, entity-oriented cli
 
 ## Install
 ```bash
-npm install open-topo-data
+npm install @voxgig-sdk/open-topo-data
 ```
 ## Tutorial: your first API call
 

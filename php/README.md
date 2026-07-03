@@ -10,7 +10,7 @@ The PHP SDK for the OpenTopoData API — an entity-oriented client using PHP con
 
 ## Install
 ```bash
-composer require voxgig/open-topo-data-sdk
+composer require voxgig-sdk/open-topo-data
 ```
 
 

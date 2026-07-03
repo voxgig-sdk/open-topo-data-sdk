@@ -10,13 +10,13 @@ The Ruby SDK for the OpenTopoData API — an entity-oriented client using idioma
 
 ## Install
 ```bash
-gem install open-topo-data-sdk
+gem install voxgig-sdk-open-topo-data
 ```
 
 Or add to your `Gemfile`:
 
 ```ruby
-gem "open-topo-data-sdk"
+gem "voxgig-sdk-open-topo-data"
 ```
 
 Then run:

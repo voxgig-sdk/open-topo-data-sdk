@@ -10,7 +10,7 @@ The Python SDK for the OpenTopoData API — an entity-oriented client following 
 
 ## Install
 ```bash
-pip install open-topo-data-sdk
+pip install voxgig-sdk-open-topo-data
 ```
 
 Or install from source:

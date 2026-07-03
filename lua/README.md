@@ -10,7 +10,7 @@ The Lua SDK for the OpenTopoData API — an entity-oriented client using Lua con
 
 ## Install
 ```bash
-luarocks install open-topo-data-sdk
+luarocks install voxgig-sdk-open-topo-data
 ```
 
 If the module is not yet published, add the source directory to

@@ -14,9 +14,6 @@ local function make_config()
     },
     options = {
       base = "https://api.opentopodata.org/v1",
-      auth = {
-        prefix = "Bearer",
-      },
       headers = {
         ["content-type"] = "application/json",
       },
@@ -67,6 +64,7 @@ local function make_config()
                       ["orig"] = "dataset",
                       ["reqd"] = true,
                       ["type"] = "`$STRING`",
+                      ["index$"] = 0,
                     },
                   },
                   ["query"] = {

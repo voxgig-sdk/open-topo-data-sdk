@@ -114,7 +114,6 @@ function basicSetup(extra?: any) {
     'OPEN_TOPO_DATA_TEST_GET_ELEVATION_ENTID': idmap,
     'OPEN_TOPO_DATA_TEST_LIVE': 'FALSE',
     'OPEN_TOPO_DATA_TEST_EXPLAIN': 'FALSE',
-    'OPEN_TOPO_DATA_APIKEY': 'NONE',
   })
 
   idmap = env['OPEN_TOPO_DATA_TEST_GET_ELEVATION_ENTID']
@@ -124,7 +123,6 @@ function basicSetup(extra?: any) {
   if (live) {
     client = new OpenTopoDataSDK(merge([
       {
-        apikey: env.OPEN_TOPO_DATA_APIKEY,
       },
       extra
     ]))

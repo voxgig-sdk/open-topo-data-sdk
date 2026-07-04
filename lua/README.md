@@ -9,12 +9,9 @@ The Lua SDK for the OpenTopoData API — an entity-oriented client using Lua con
 
 
 ## Install
-```bash
-luarocks install voxgig-sdk-open-topo-data
-```
-
-If the module is not yet published, add the source directory to
-your `LUA_PATH`:
+This package is not yet published to LuaRocks. Install it from the
+GitHub release tag (`lua/vX.Y.Z`, see [Releases](https://github.com/voxgig-sdk/open-topo-data-sdk/releases)),
+or add the source directory to your `LUA_PATH`:
 
 ```bash
 export LUA_PATH="path/to/lua/?.lua;path/to/lua/?/init.lua;;"
@@ -31,15 +28,13 @@ loading a specific record.
 ```lua
 local sdk = require("open-topo-data_sdk")
 
-local client = sdk.new({
-  apikey = os.getenv("OPEN-TOPO-DATA_APIKEY"),
-})
+local client = sdk.new()
 ```
 
 ### 2. List getelevations
 
 ```lua
-local result, err = client:GetElevation():list()
+local result, err = client:getelevation():list()
 if err then error(err) end
 
 if type(result) == "table" then
@@ -93,7 +88,7 @@ Create a mock client for unit testing — no server required:
 ```lua
 local client = sdk.test()
 
-local result, err = client:OpenTopoData():load({ id = "test01" })
+local result, err = client:getelevation():load({ id = "test01" })
 -- result contains mock response data
 ```
 
@@ -126,8 +121,7 @@ local client = sdk.new({
 Create a `.env.local` file at the project root:
 
 ```
-OPEN-TOPO-DATA_TEST_LIVE=TRUE
-OPEN-TOPO-DATA_APIKEY=<your-key>
+OPEN_TOPO_DATA_TEST_LIVE=TRUE
 ```
 
 Then run:
@@ -150,7 +144,6 @@ Creates a new SDK client.
 
 | Option | Type | Description |
 | --- | --- | --- |
-| `apikey` | `string` | API key for authentication. |
 | `base` | `string` | Base URL of the API server. |
 | `prefix` | `string` | URL path prefix prepended to all requests. |
 | `suffix` | `string` | URL path suffix appended to all requests. |
@@ -229,7 +222,7 @@ API path: `/{dataset}`
 
 ### GetElevation
 
-Create an instance: `const get_elevation = client.GetElevation()`
+Create an instance: `const get_elevation = client.get_elevation`
 
 #### Operations
 
@@ -248,7 +241,7 @@ Create an instance: `const get_elevation = client.GetElevation()`
 #### Example: List
 
 ```ts
-const get_elevations = await client.GetElevation().list()
+const get_elevations = await client.get_elevation.list()
 ```
 
 
@@ -323,11 +316,11 @@ Entity instances are stateful. After a successful `load`, the entity
 stores the returned data and match criteria internally.
 
 ```lua
-local moon = client:Moon(nil)
-moon:load({ planet_id = "earth", id = "luna" }, nil)
+local getelevation = client:getelevation()
+getelevation:load({ id = "example_id" })
 
--- moon:data_get() now returns the loaded moon data
--- moon:match_get() returns the last match criteria
+-- getelevation:data_get() now returns the loaded getelevation data
+-- getelevation:match_get() returns the last match criteria
 ```
 
 Call `make()` to create a fresh instance with the same configuration

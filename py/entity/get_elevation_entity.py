@@ -1,7 +1,13 @@
 # OpenTopoData SDK GetElevation entity
 
+from __future__ import annotations
+
 from utility.voxgig_struct import voxgig_struct as vs
 from core import helpers
+from opentopodata_types import (
+    GetElevation,
+    GetElevationListMatch,
+)
 
 
 class GetElevationEntity:
@@ -44,7 +50,7 @@ class GetElevationEntity:
             self._data = helpers.to_map(vs.clone(args)) or {}
             self._utility.feature_hook(self._entctx, "SetData")
 
-    def data_get(self):
+    def data_get(self) -> GetElevation:
         self._utility.feature_hook(self._entctx, "GetData")
         return vs.clone(self._data)
 
@@ -53,14 +59,14 @@ class GetElevationEntity:
             self._match = helpers.to_map(vs.clone(args)) or {}
             self._utility.feature_hook(self._entctx, "SetMatch")
 
-    def match_get(self):
+    def match_get(self) -> GetElevation:
         self._utility.feature_hook(self._entctx, "GetMatch")
         return vs.clone(self._match)
 
     
 
     
-    def list(self, reqmatch, ctrl=None):
+    def list(self, reqmatch: GetElevationListMatch, ctrl=None) -> list[GetElevation]:
         utility = self._utility
         ctx = utility.make_context({
             "opname": "list",

@@ -18,7 +18,6 @@ Create a new SDK client instance.
 | Name | Type | Description |
 | --- | --- | --- |
 | `options` | `object` | SDK configuration options. |
-| `options.apikey` | `string` | API key for authentication. |
 | `options.base` | `string` | Base URL for API requests. |
 | `options.prefix` | `string` | URL prefix appended after base. |
 | `options.suffix` | `string` | URL suffix appended after path. |
@@ -110,7 +109,7 @@ Alias for `OpenTopoDataSDK.test()`.
 ## GetElevationEntity
 
 ```ts
-const get_elevation = client.GetElevation()
+const get_elevation = client.get_elevation
 ```
 
 ### Fields
@@ -128,7 +127,7 @@ const get_elevation = client.GetElevation()
 List entities matching the given criteria. Returns an array.
 
 ```ts
-const results = await client.GetElevation().list()
+const results = await client.get_elevation.list()
 ```
 
 ### Common Methods

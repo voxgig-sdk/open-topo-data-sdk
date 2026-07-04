@@ -38,10 +38,6 @@ class Config {
   options = {
     base: 'https://api.opentopodata.org/v1',
 
-    auth: {
-      prefix: 'Bearer',
-    },
-
     headers: {
       "content-type": "application/json"
     },
@@ -97,7 +93,8 @@ class Config {
                     "name": "id",
                     "orig": "dataset",
                     "reqd": true,
-                    "type": "`$STRING`"
+                    "type": "`$STRING`",
+                    "index$": 0
                   }
                 ],
                 "query": [

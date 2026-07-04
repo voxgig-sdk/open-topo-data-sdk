@@ -52,8 +52,7 @@ class TestGetElevationEntity:
             "dataset": setup["idmap"]["dataset01"],
         }
 
-        get_elevation_ref01_list_result, err = get_elevation_ref01_ent.list(get_elevation_ref01_match, None)
-        assert err is None
+        get_elevation_ref01_list_result = get_elevation_ref01_ent.list(get_elevation_ref01_match, None)
         assert isinstance(get_elevation_ref01_list_result, list)
 
 
@@ -94,7 +93,6 @@ def _get_elevation_basic_setup(extra):
         "OPENTOPODATA_TEST_GET_ELEVATION_ENTID": idmap,
         "OPENTOPODATA_TEST_LIVE": "FALSE",
         "OPENTOPODATA_TEST_EXPLAIN": "FALSE",
-        "OPENTOPODATA_APIKEY": "NONE",
     })
 
     idmap_resolved = helpers.to_map(
@@ -105,7 +103,6 @@ def _get_elevation_basic_setup(extra):
     if env.get("OPENTOPODATA_TEST_LIVE") == "TRUE":
         merged_opts = vs.merge([
             {
-                "apikey": env.get("OPENTOPODATA_APIKEY"),
             },
             extra or {},
         ])

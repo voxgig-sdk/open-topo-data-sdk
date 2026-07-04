@@ -245,6 +245,9 @@ func (sdk *OpenTopoDataSDK) Direct(fetchargs map[string]any) (map[string]any, er
 }
 
 
+// GetElevation returns a GetElevation entity bound to this client.
+// Idiomatic usage: client.GetElevation(nil).List(nil, nil) or
+// client.GetElevation(nil).Load(map[string]any{"id": ...}, nil).
 func (sdk *OpenTopoDataSDK) GetElevation(data map[string]any) OpenTopoDataEntity {
 	return NewGetElevationEntityFunc(sdk, data)
 }

@@ -81,6 +81,10 @@ end
 
 
 
+---@param reqmatch GetElevationListMatch
+---@param ctrl? table
+---@return GetElevation[]
+---@return string? err
 function GetElevationEntity:list(reqmatch, ctrl)
   local utility = self._utility
   local ctx = utility.make_context({

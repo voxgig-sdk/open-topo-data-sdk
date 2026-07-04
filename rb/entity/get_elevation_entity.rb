@@ -45,6 +45,7 @@ class GetElevationEntity
     end
   end
 
+  # @return [GetElevation, Hash] the current GetElevation data
   def data_get
     @_utility.feature_hook.call(@_entctx, "GetData")
     VoxgigStruct.clone(@_data)
@@ -57,6 +58,7 @@ class GetElevationEntity
     end
   end
 
+  # @return [Hash] the current match filter (any subset of GetElevation fields)
   def match_get
     @_utility.feature_hook.call(@_entctx, "GetMatch")
     VoxgigStruct.clone(@_match)
@@ -65,6 +67,11 @@ class GetElevationEntity
   
 
   
+  # List GetElevation items matching the given filter.
+  #
+  # @param reqmatch [GetElevationListMatch, Hash, nil] match filter (any subset of GetElevation fields)
+  # @param ctrl [Object, nil] optional per-call control
+  # @return [Array<GetElevation>, Array] the matching GetElevation items; raises OpenTopoDataError on failure
   def list(reqmatch, ctrl = nil)
     utility = @_utility
     ctx = utility.make_context.call({

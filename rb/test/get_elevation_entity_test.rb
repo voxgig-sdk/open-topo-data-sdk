@@ -45,8 +45,7 @@ class GetElevationEntityTest < Minitest::Test
       "dataset" => setup[:idmap]["dataset01"],
     }
 
-    get_elevation_ref01_list_result, err = get_elevation_ref01_ent.list(get_elevation_ref01_match, nil)
-    assert_nil err
+    get_elevation_ref01_list_result = get_elevation_ref01_ent.list(get_elevation_ref01_match, nil)
     assert get_elevation_ref01_list_result.is_a?(Array)
 
   end
@@ -85,7 +84,6 @@ def get_elevation_basic_setup(extra)
     "OPENTOPODATA_TEST_GET_ELEVATION_ENTID" => idmap,
     "OPENTOPODATA_TEST_LIVE" => "FALSE",
     "OPENTOPODATA_TEST_EXPLAIN" => "FALSE",
-    "OPENTOPODATA_APIKEY" => "NONE",
   })
 
   idmap_resolved = Helpers.to_map(
@@ -97,7 +95,6 @@ def get_elevation_basic_setup(extra)
   if env["OPENTOPODATA_TEST_LIVE"] == "TRUE"
     merged_opts = Vs.merge([
       {
-        "apikey" => env["OPENTOPODATA_APIKEY"],
       },
       extra || {},
     ])

@@ -121,7 +121,6 @@ func get_elevationBasicSetup(extra map[string]any) *entityTestSetup {
 		"OPENTOPODATA_TEST_GET_ELEVATION_ENTID": idmap,
 		"OPENTOPODATA_TEST_LIVE":      "FALSE",
 		"OPENTOPODATA_TEST_EXPLAIN":   "FALSE",
-		"OPENTOPODATA_APIKEY":         "NONE",
 	})
 
 	idmapResolved := core.ToMapAny(env["OPENTOPODATA_TEST_GET_ELEVATION_ENTID"])
@@ -132,7 +131,6 @@ func get_elevationBasicSetup(extra map[string]any) *entityTestSetup {
 	if env["OPENTOPODATA_TEST_LIVE"] == "TRUE" {
 		mergedOpts := vs.Merge([]any{
 			map[string]any{
-				"apikey": env["OPENTOPODATA_APIKEY"],
 			},
 			extra,
 		})

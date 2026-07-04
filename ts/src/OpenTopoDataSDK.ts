@@ -2,6 +2,8 @@
 
 import { GetElevationEntity } from './entity/GetElevationEntity'
 
+export type * from './OpenTopoDataTypes'
+
 
 import { inspect } from 'node:util'
 
@@ -202,6 +204,14 @@ class OpenTopoDataSDK {
 
 
 
+  _get_elevation?: GetElevationEntity
+
+  // Idiomatic facade: `client.get_elevation.list()` / `client.get_elevation.load({ id })`.
+  get get_elevation(): GetElevationEntity {
+    return (this._get_elevation ??= new GetElevationEntity(this, undefined))
+  }
+
+  /** @deprecated Use `client.get_elevation` instead. */
   GetElevation(data?: any) {
     const self = this
     return new GetElevationEntity(self,data)

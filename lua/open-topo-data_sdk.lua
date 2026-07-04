@@ -244,6 +244,19 @@ end
 
 
 
+-- Idiomatic facade: client:get_elevation():list() / client:get_elevation():load({ id = ... })
+function OpenTopoDataSDK:get_elevation(data)
+  local EntityMod = require("entity.get_elevation_entity")
+  if data == nil then
+    if self._get_elevation == nil then
+      self._get_elevation = EntityMod.new(self, nil)
+    end
+    return self._get_elevation
+  end
+  return EntityMod.new(self, data)
+end
+
+-- Deprecated: use client:get_elevation() instead.
 function OpenTopoDataSDK:GetElevation(data)
   local EntityMod = require("entity.get_elevation_entity")
   return EntityMod.new(self, data)

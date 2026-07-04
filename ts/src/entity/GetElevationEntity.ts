@@ -14,9 +14,13 @@ import type {
   Control,
 } from '../types'
 
+import type {
+  GetElevation,
+  GetElevationListMatch,
+} from '../OpenTopoDataTypes'
 
 // TODO: needs Entity superclass
-class GetElevationEntity extends OpenTopoDataEntityBase {
+class GetElevationEntity extends OpenTopoDataEntityBase<GetElevation> {
 
   constructor(client: OpenTopoDataSDK, entopts: any) {
     super(client, entopts)
@@ -33,7 +37,7 @@ class GetElevationEntity extends OpenTopoDataEntityBase {
 
 
 
-  async list(this: any, reqmatch?: any, ctrl?: Control) {
+  async list(this: any, reqmatch?: GetElevationListMatch, ctrl?: Control): Promise<GetElevation[]> {
 
     const utility = this._utility
 
@@ -133,7 +137,9 @@ class GetElevationEntity extends OpenTopoDataEntityBase {
         throw err
       }
       else {
-        return undefined
+        // Off-happy-path (throw disabled): typed as any so the method's
+        // Promise<GetElevation[]> return stays clean under strict null checks.
+        return undefined as any
       }
     }
   }

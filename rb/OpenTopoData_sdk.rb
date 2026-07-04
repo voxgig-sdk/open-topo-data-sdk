@@ -208,13 +208,7 @@ class OpenTopoDataSDK
   end
 
 
-  # Idiomatic facade: client.get_elevation.list / client.get_elevation.load({ "id" => ... })
-  def get_elevation
-    require_relative 'entity/get_elevation_entity'
-    @get_elevation ||= GetElevationEntity.new(self, nil)
-  end
-
-  # Deprecated: use client.get_elevation instead.
+  # Canonical facade: client.GetElevation.list / client.GetElevation.load({ "id" => ... })
   def GetElevation(data = nil)
     require_relative 'entity/get_elevation_entity'
     GetElevationEntity.new(self, data)

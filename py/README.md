@@ -31,14 +31,16 @@ from opentopodata_sdk import OpenTopoDataSDK
 client = OpenTopoDataSDK()
 ```
 
-### 2. List getelevations
+### 2. List getelevation records
+
+`list()` returns a `list` of records (each a `dict`) and raises on
+error — iterate it directly.
 
 ```python
 try:
-    result = client.getelevation.list()
-    for item in result:
-        d = item.data_get()
-        print(d["id"], d["name"])
+    getelevations = client.GetElevation().list({})
+    for getelevation in getelevations:
+        print(getelevation)
 except Exception as err:
     print(f"list failed: {err}")
 ```
@@ -86,8 +88,9 @@ Create a mock client for unit testing — no server required:
 ```python
 client = OpenTopoDataSDK.test()
 
-result = client.getelevation.load({"id": "test01"})
-# result contains mock response data
+# Entity ops return the bare record and raise on error.
+getelevation = client.GetElevation().load({"id": "test01"})
+# getelevation contains the mock response record
 ```
 
 ### Use a custom fetch function
@@ -222,7 +225,7 @@ API path: `/{dataset}`
 
 ### GetElevation
 
-Create an instance: `const get_elevation = client.get_elevation`
+Create an instance: `get_elevation = client.GetElevation()`
 
 #### Operations
 
@@ -240,8 +243,8 @@ Create an instance: `const get_elevation = client.get_elevation`
 
 #### Example: List
 
-```ts
-const get_elevations = await client.get_elevation.list()
+```python
+get_elevations = client.GetElevation().list({})
 ```
 
 
@@ -315,7 +318,7 @@ Entity instances are stateful. After a successful `load`, the entity
 stores the returned data and match criteria internally.
 
 ```python
-getelevation = client.getelevation
+getelevation = client.GetElevation()
 getelevation.load({"id": "example_id"})
 
 # getelevation.data_get() now returns the loaded getelevation data

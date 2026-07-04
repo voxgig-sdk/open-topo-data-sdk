@@ -109,7 +109,7 @@ Alias for `OpenTopoDataSDK.test()`.
 ## GetElevationEntity
 
 ```ts
-const get_elevation = client.get_elevation
+const get_elevation = client.GetElevation()
 ```
 
 ### Fields
@@ -127,7 +127,7 @@ const get_elevation = client.get_elevation
 List entities matching the given criteria. Returns an array.
 
 ```ts
-const results = await client.get_elevation.list()
+const results = await client.GetElevation().list()
 ```
 
 ### Common Methods

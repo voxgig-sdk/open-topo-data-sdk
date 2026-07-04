@@ -26,9 +26,11 @@ import { OpenTopoDataSDK } from '@voxgig-sdk/open-topo-data'
 
 const client = new OpenTopoDataSDK()
 
-// List all getelevations
-const getelevations = await client.getelevation.list()
-console.log(getelevations.data)
+// List all getelevations (returns GetElevation[])
+const getelevations = await client.GetElevation().list()
+for (const getelevation of getelevations) {
+  console.log(getelevation)
+}
 ```
 
 See the [TypeScript README](ts/README.md) for the full guide.
@@ -83,9 +85,10 @@ from opentopodata_sdk import OpenTopoDataSDK
 
 client = OpenTopoDataSDK()
 
-# List all getelevations
-getelevations = client.getelevation.list()
-print(getelevations)
+# List all getelevations (returns a list, raises on error)
+getelevations = client.GetElevation().list({})
+for getelevation in getelevations:
+    print(getelevation)
 ```
 
 ### PHP
@@ -96,8 +99,8 @@ require_once 'opentopodata_sdk.php';
 
 $client = new OpenTopoDataSDK();
 
-// List all getelevations (throws on error)
-$getelevations = $client->getelevation()->list();
+// List all getelevations (returns an array; throws on error)
+$getelevations = $client->GetElevation()->list();
 print_r($getelevations);
 ```
 
@@ -120,8 +123,8 @@ require_relative "OpenTopoData_sdk"
 
 client = OpenTopoDataSDK.new
 
-# List all getelevations
-getelevations = client.getelevation.list
+# List all getelevations (returns an Array; raises on error)
+getelevations = client.GetElevation.list
 puts getelevations
 ```
 
@@ -133,7 +136,7 @@ local sdk = require("open-topo-data_sdk")
 local client = sdk.new()
 
 -- List all getelevations
-local getelevations, err = client:getelevation():list()
+local getelevations, err = client:GetElevation():list()
 print(getelevations)
 ```
 
@@ -146,22 +149,27 @@ in-memory mock, so unit tests run offline.
 
 ```ts
 const client = OpenTopoDataSDK.test()
-const result = await client.getelevation.load({ id: 'test01' })
-// result.ok === true, result.data contains mock data
+const getelevation = await client.GetElevation().load({ id: 'test01' })
+// getelevation is a bare GetElevation populated with mock data
+console.log(getelevation)
 ```
 
 ### Python
 
 ```python
 client = OpenTopoDataSDK.test()
-result = client.getelevation.load({"id": "test01"})
+getelevation = client.GetElevation().load({"id": "test01"})
+print(getelevation)
 ```
 
 ### PHP
 
 ```php
-$client = OpenTopoDataSDK::test();
-$result = $client->getelevation()->load(["id" => "test01"]);
+// Seed fixture data so offline calls resolve without a live server.
+$client = OpenTopoDataSDK::test([
+    "entity" => ["getelevation" => ["test01" => ["id" => "test01"]]],
+]);
+$getelevation = $client->GetElevation()->load(["id" => "test01"]);
 ```
 
 ### Golang
@@ -176,15 +184,18 @@ result, err := client.GetElevation(nil).Load(
 ### Ruby
 
 ```ruby
-client = OpenTopoDataSDK.test
-result = client.getelevation.load({ "id" => "test01" })
+# Seed fixture data so offline calls resolve without a live server.
+client = OpenTopoDataSDK.test({
+  "entity" => { "getelevation" => { "test01" => { "id" => "test01" } } },
+})
+getelevation = client.GetElevation.load({ "id" => "test01" })
 ```
 
 ### Lua
 
 ```lua
 local client = sdk.test()
-local result, err = client:getelevation():load({ id = "test01" })
+local result, err = client:GetElevation():load({ id = "test01" })
 ```
 
 ## How it works
@@ -232,6 +243,9 @@ const result = await client.direct({
   method: 'GET',
   params: { id: 'example' },
 })
+if (result instanceof Error) {
+  throw result
+}
 console.log(result.data)
 ```
 

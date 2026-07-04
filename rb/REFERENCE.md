@@ -86,7 +86,7 @@ same parameters as `direct()`. Raises on error.
 ## GetElevationEntity
 
 ```ruby
-get_elevation = client.get_elevation
+get_elevation = client.GetElevation
 ```
 
 ### Fields
@@ -104,7 +104,7 @@ get_elevation = client.get_elevation
 List entities matching the given criteria. Returns an array. Raises on error.
 
 ```ruby
-results = client.get_elevation.list(nil)
+results = client.GetElevation.list(nil)
 ```
 
 ### Common Methods

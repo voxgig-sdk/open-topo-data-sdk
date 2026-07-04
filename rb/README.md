@@ -28,16 +28,14 @@ require_relative "OpenTopoData_sdk"
 client = OpenTopoDataSDK.new
 ```
 
-### 2. List getelevations
+### 2. List getelevation records
 
 ```ruby
 begin
-  result = client.getelevation.list
-  if result.is_a?(Array)
-    result.each do |item|
-      d = item.data_get
-      puts "#{d["id"]} #{d["name"]}"
-    end
+  # list returns an Array of GetElevation records — iterate directly.
+  getelevations = client.GetElevation.list
+  getelevations.each do |item|
+    puts "#{item["id"]} #{item["name"]}"
   end
 rescue => err
   warn "list failed: #{err}"
@@ -85,13 +83,17 @@ end
 
 ### Use test mode
 
-Create a mock client for unit testing — no server required:
+Create a mock client for unit testing — no server required. Seed fixture
+data via the `entity` option so offline calls resolve without a live server:
 
 ```ruby
-client = OpenTopoDataSDK.test
+client = OpenTopoDataSDK.test({
+  "entity" => { "getelevation" => { "test01" => { "id" => "test01" } } },
+})
 
-result = client.getelevation.load({ "id" => "test01" })
-# result contains mock response data
+# load returns the bare mock record (raises on error).
+getelevation = client.GetElevation.load({ "id" => "test01" })
+puts getelevation
 ```
 
 ### Use a custom fetch function
@@ -225,7 +227,7 @@ API path: `/{dataset}`
 
 ### GetElevation
 
-Create an instance: `const get_elevation = client.get_elevation`
+Create an instance: `get_elevation = client.GetElevation`
 
 #### Operations
 
@@ -243,8 +245,9 @@ Create an instance: `const get_elevation = client.get_elevation`
 
 #### Example: List
 
-```ts
-const get_elevations = await client.get_elevation.list()
+```ruby
+# list returns an Array of GetElevation records (raises on error).
+get_elevations = client.GetElevation.list
 ```
 
 
@@ -319,7 +322,7 @@ Entity instances are stateful. After a successful `load`, the entity
 stores the returned data and match criteria internally.
 
 ```ruby
-getelevation = client.getelevation
+getelevation = client.GetElevation
 getelevation.load({ "id" => "example_id" })
 
 # getelevation.data_get now returns the loaded getelevation data

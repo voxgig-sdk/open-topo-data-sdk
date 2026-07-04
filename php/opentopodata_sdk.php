@@ -233,10 +233,10 @@ class OpenTopoDataSDK
 
     private $_get_elevation = null;
 
-    // Idiomatic facade: $client->get_elevation()->list() / ->load(["id" => ...]).
-    // Also serves the deprecated PascalCase alias GetElevation() (PHP method
-    // names are case-insensitive).
-    public function get_elevation($data = null)
+    // Canonical facade: $client->GetElevation()->list() / ->load(["id" => ...]).
+    // PHP method names are case-insensitive, so lowercase $client->get_elevation()
+    // resolves here too.
+    public function GetElevation($data = null)
     {
         require_once __DIR__ . '/entity/get_elevation_entity.php';
         if ($data === null) {

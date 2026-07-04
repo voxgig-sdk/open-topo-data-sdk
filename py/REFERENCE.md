@@ -80,7 +80,7 @@ Prepare a fetch definition without sending. Returns the `fetchdef` and raises on
 ## GetElevationEntity
 
 ```python
-get_elevation = client.get_elevation
+get_elevation = client.GetElevation()
 ```
 
 ### Fields
@@ -98,7 +98,9 @@ get_elevation = client.get_elevation
 List entities matching the given criteria. Returns a list and raises on error.
 
 ```python
-results = client.get_elevation.list({})
+results = client.GetElevation().list({})
+for get_elevation in results:
+    print(get_elevation)
 ```
 
 ### Common Methods

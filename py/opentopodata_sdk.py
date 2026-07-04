@@ -220,25 +220,15 @@ class OpenTopoDataSDK:
         }
 
 
-    @property
-    def get_elevation(self):
-        """Idiomatic facade: client.get_elevation.list() / client.get_elevation.load({"id": ...})."""
-        from entity.get_elevation_entity import GetElevationEntity
-        cached = getattr(self, "_get_elevation", None)
-        if cached is None:
-            cached = GetElevationEntity(self, None)
-            self._get_elevation = cached
-        return cached
-
-    def GetElevation(self, data=None):
-        # Deprecated: use client.get_elevation instead.
+    def GetElevation(self, data=None) -> "GetElevationEntity":
+        """Entity factory: client.GetElevation().list({}) / client.GetElevation().load({"id": ...})."""
         from entity.get_elevation_entity import GetElevationEntity
         return GetElevationEntity(self, data)
 
 
 
     @classmethod
-    def test(cls, testopts=None, sdkopts=None):
+    def test(cls, testopts=None, sdkopts=None) -> "OpenTopoDataSDK":
         if sdkopts is None:
             sdkopts = {}
         sdkopts = vs.clone(sdkopts)
@@ -258,3 +248,9 @@ class OpenTopoDataSDK:
         sdk.mode = "test"
 
         return sdk
+
+
+from typing import TYPE_CHECKING
+
+if TYPE_CHECKING:
+    from entity.get_elevation_entity import GetElevationEntity

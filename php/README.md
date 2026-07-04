@@ -29,18 +29,16 @@ require_once 'opentopodata_sdk.php';
 $client = new OpenTopoDataSDK();
 ```
 
-### 2. List getelevations
+### 2. List getelevation records
 
 ```php
 try {
-    $result = $client->getelevation()->list();
-    if (is_array($result)) {
-        foreach ($result as $item) {
-            $d = $item->data_get();
-            echo $d["id"] . " " . $d["name"] . "\n";
-        }
+    // list() returns an array of GetElevation records — iterate directly.
+    $getelevations = $client->GetElevation()->list();
+    foreach ($getelevations as $item) {
+        echo $item["id"] . " " . $item["name"] . "\n";
     }
-} catch (\Exception $err) {
+} catch (\Throwable $err) {
     echo "Error: " . $err->getMessage();
 }
 ```
@@ -86,13 +84,17 @@ print_r($fetchdef["headers"]);
 
 ### Use test mode
 
-Create a mock client for unit testing — no server required:
+Create a mock client for unit testing — no server required. Seed fixture
+data via the `entity` option so offline calls resolve without a live server:
 
 ```php
-$client = OpenTopoDataSDK::test();
+$client = OpenTopoDataSDK::test([
+    "entity" => ["getelevation" => ["test01" => ["id" => "test01"]]],
+]);
 
-$result = $client->getelevation()->load(["id" => "test01"]);
-// $result contains mock response data
+// load() returns the bare mock record (throws on error).
+$getelevation = $client->GetElevation()->load(["id" => "test01"]);
+print_r($getelevation);
 ```
 
 ### Use a custom fetch function
@@ -230,7 +232,7 @@ API path: `/{dataset}`
 
 ### GetElevation
 
-Create an instance: `const get_elevation = client.get_elevation`
+Create an instance: `$get_elevation = $client->GetElevation();`
 
 #### Operations
 
@@ -248,8 +250,9 @@ Create an instance: `const get_elevation = client.get_elevation`
 
 #### Example: List
 
-```ts
-const get_elevations = await client.get_elevation.list()
+```php
+// list() returns an array of GetElevation records (throws on error).
+$get_elevations = $client->GetElevation()->list();
 ```
 
 
@@ -324,7 +327,7 @@ Entity instances are stateful. After a successful `load`, the entity
 stores the returned data and match criteria internally.
 
 ```php
-$getelevation = $client->getelevation();
+$getelevation = $client->GetElevation();
 $getelevation->load(["id" => "example_id"]);
 
 // $getelevation->dataGet() now returns the loaded getelevation data

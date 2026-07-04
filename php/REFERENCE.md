@@ -85,7 +85,7 @@ Prepare a fetch definition without sending the request. Returns the
 ## GetElevationEntity
 
 ```php
-$get_elevation = $client->get_elevation();
+$get_elevation = $client->GetElevation();
 ```
 
 ### Fields
@@ -103,7 +103,7 @@ $get_elevation = $client->get_elevation();
 List entities matching the given criteria. Returns an array. Throws on error.
 
 ```php
-$results = $client->get_elevation()->list([]);
+$results = $client->GetElevation()->list([]);
 ```
 
 ### Common Methods

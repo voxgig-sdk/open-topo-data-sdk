@@ -116,9 +116,9 @@ const get_elevation = client.GetElevation()
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `dataset` | ``$STRING`` | Yes |  |
-| `elevation` | ``$NUMBER`` | Yes |  |
-| `location` | ``$OBJECT`` | Yes |  |
+| `dataset` | `string` | Yes |  |
+| `elevation` | `number` | Yes |  |
+| `location` | `Record<string, any>` | Yes |  |
 
 ### Operations
 

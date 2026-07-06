@@ -8,7 +8,7 @@ Complete API reference for the OpenTopoData PHP SDK.
 ### Constructor
 
 ```php
-require_once __DIR__ . '/open-topo-data_sdk.php';
+require_once __DIR__ . '/opentopodata_sdk.php';
 
 $client = new OpenTopoDataSDK($options);
 ```
@@ -45,11 +45,11 @@ $client = OpenTopoDataSDK::test();
 
 Create a new `GetElevationEntity` instance. Pass `null` for no initial data.
 
-#### `optionsMap(): array`
+#### `options_map(): array`
 
 Return a deep copy of the current SDK options.
 
-#### `getUtility(): ProjectNameUtility`
+#### `get_utility(): OpenTopoDataUtility`
 
 Return a copy of the SDK utility object.
 
@@ -92,35 +92,35 @@ $get_elevation = $client->GetElevation();
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `dataset` | ``$STRING`` | Yes |  |
-| `elevation` | ``$NUMBER`` | Yes |  |
-| `location` | ``$OBJECT`` | Yes |  |
+| `dataset` | `string` | Yes |  |
+| `elevation` | `float` | Yes |  |
+| `location` | `array` | Yes |  |
 
 ### Operations
 
-#### `list(array $reqmatch, ?array $ctrl = null): mixed`
+#### `list(?array $reqmatch = null, ?array $ctrl = null): mixed`
 
-List entities matching the given criteria. Returns an array. Throws on error.
+List entities matching the given criteria (call with no argument to list all). Returns an array. Throws on error.
 
 ```php
-$results = $client->GetElevation()->list([]);
+$results = $client->GetElevation()->list();
 ```
 
 ### Common Methods
 
-#### `dataGet(): array`
+#### `data_get(): array`
 
 Get the entity data. Returns a copy of the current data.
 
-#### `dataSet($data): void`
+#### `data_set($data): void`
 
 Set the entity data.
 
-#### `matchGet(): array`
+#### `match_get(): array`
 
 Get the entity match criteria.
 
-#### `matchSet($match): void`
+#### `match_set($match): void`
 
 Set the entity match criteria.
 
@@ -129,7 +129,7 @@ Set the entity match criteria.
 Create a new `GetElevationEntity` instance with the same client and
 options.
 
-#### `getName(): string`
+#### `get_name(): string`
 
 Return the entity name.
 

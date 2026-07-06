@@ -8,7 +8,7 @@ Complete API reference for the OpenTopoData Ruby SDK.
 ### Constructor
 
 ```ruby
-require_relative 'open-topo-data_sdk'
+require_relative 'OpenTopoData_sdk'
 
 client = OpenTopoDataSDK.new(options)
 ```
@@ -93,18 +93,18 @@ get_elevation = client.GetElevation
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `dataset` | ``$STRING`` | Yes |  |
-| `elevation` | ``$NUMBER`` | Yes |  |
-| `location` | ``$OBJECT`` | Yes |  |
+| `dataset` | `String` | Yes |  |
+| `elevation` | `Float` | Yes |  |
+| `location` | `Hash` | Yes |  |
 
 ### Operations
 
-#### `list(reqmatch, ctrl = nil) -> Array`
+#### `list(reqmatch = nil, ctrl = nil) -> Array`
 
-List entities matching the given criteria. Returns an array. Raises on error.
+List entities matching the given criteria (call with no argument to list all). Returns an array. Raises on error.
 
 ```ruby
-results = client.GetElevation.list(nil)
+results = client.GetElevation.list
 ```
 
 ### Common Methods

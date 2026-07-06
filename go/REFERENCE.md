@@ -97,9 +97,9 @@ get_elevation := client.GetElevation(nil)
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `dataset` | ``$STRING`` | Yes |  |
-| `elevation` | ``$NUMBER`` | Yes |  |
-| `location` | ``$OBJECT`` | Yes |  |
+| `dataset` | `string` | Yes |  |
+| `elevation` | `float64` | Yes |  |
+| `location` | `map[string]any` | Yes |  |
 
 ### Operations
 

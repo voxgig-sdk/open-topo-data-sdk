@@ -221,7 +221,7 @@ class OpenTopoDataSDK:
 
 
     def GetElevation(self, data=None) -> "GetElevationEntity":
-        """Entity factory: client.GetElevation().list({}) / client.GetElevation().load({"id": ...})."""
+        """Entity factory: client.GetElevation().list() / client.GetElevation().load({"id": ...})."""
         from entity.get_elevation_entity import GetElevationEntity
         return GetElevationEntity(self, data)
 

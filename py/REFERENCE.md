@@ -8,7 +8,7 @@ Complete API reference for the OpenTopoData Python SDK.
 ### Constructor
 
 ```python
-from open-topo-data_sdk import OpenTopoDataSDK
+from opentopodata_sdk import OpenTopoDataSDK
 
 client = OpenTopoDataSDK(options)
 ```
@@ -87,18 +87,18 @@ get_elevation = client.GetElevation()
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `dataset` | ``$STRING`` | Yes |  |
-| `elevation` | ``$NUMBER`` | Yes |  |
-| `location` | ``$OBJECT`` | Yes |  |
+| `dataset` | `str` | Yes |  |
+| `elevation` | `float` | Yes |  |
+| `location` | `dict` | Yes |  |
 
 ### Operations
 
-#### `list(reqmatch, ctrl=None) -> list`
+#### `list(reqmatch=None, ctrl=None) -> list`
 
-List entities matching the given criteria. Returns a list and raises on error.
+List entities matching the given criteria. The match is optional — call `list()` with no argument to list all records. Returns a list and raises on error.
 
 ```python
-results = client.GetElevation().list({})
+results = client.GetElevation().list()
 for get_elevation in results:
     print(get_elevation)
 ```

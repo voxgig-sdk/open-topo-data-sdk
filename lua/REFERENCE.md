@@ -90,9 +90,9 @@ local get_elevation = client:GetElevation(nil)
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `dataset` | ``$STRING`` | Yes |  |
-| `elevation` | ``$NUMBER`` | Yes |  |
-| `location` | ``$OBJECT`` | Yes |  |
+| `dataset` | `string` | Yes |  |
+| `elevation` | `number` | Yes |  |
+| `location` | `table` | Yes |  |
 
 ### Operations
 

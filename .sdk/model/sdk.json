@@ -6,9 +6,6 @@
     },
     "kit": {
       "config": {
-        "auth": {
-          "prefix": "Bearer"
-        },
         "docs_order": [
           "ts",
           "py",
@@ -250,6 +247,7 @@
           "name": "Open Source",
           "url": "https://github.com/ajnisbet/opentopodata"
         },
+        "meta_source": "https://www.freepublicapis.com",
         "servers": [
           {
             "description": "Public API server",
@@ -260,8 +258,10 @@
             "url": "http://localhost:5000/v1"
           }
         ],
+        "summary": "Open Topo Data is a REST API server that provides access to elevation data.",
         "title": "Open Topo Data",
-        "version": "1.0.0"
+        "version": "1.0.0",
+        "website": "https://www.opentopodata.org"
       },
       "option": {},
       "target": {
@@ -314,6 +314,9 @@
           },
           "name": "go-cli",
           "phase": {
+            "agentguide": {
+              "active": false
+            },
             "entity": {
               "active": false
             },
@@ -364,6 +367,9 @@
           },
           "name": "go-mcp",
           "phase": {
+            "agentguide": {
+              "active": false
+            },
             "entity": {
               "active": false
             },

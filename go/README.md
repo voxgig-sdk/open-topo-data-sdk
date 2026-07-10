@@ -50,12 +50,12 @@ import (
 func main() {
     client := sdk.New()
 
-    // List getelevation records — the value is the array of records itself.
-    getelevations, err := client.GetElevation(nil).List(nil, nil)
+    // List getElevation records — the value is the array of records itself.
+    getElevations, err := client.GetElevation(nil).List(nil, nil)
     if err != nil {
         panic(err)
     }
-    for _, item := range getelevations.([]any) {
+    for _, item := range getElevations.([]any) {
         fmt.Println(item)
     }
 }
@@ -137,13 +137,13 @@ Create a mock client for unit testing — no server required:
 ```go
 client := sdk.Test()
 
-getelevation, err := client.GetElevation(nil).List(
+getElevation, err := client.GetElevation(nil).List(
     nil, nil,
 )
 if err != nil {
     panic(err)
 }
-fmt.Println(getelevation) // the returned mock data
+fmt.Println(getElevation) // the returned mock data
 ```
 
 ### Use a custom fetch function
@@ -247,9 +247,9 @@ Check `err` first, then use the value directly (or the typed
 `...Typed` variants, which return the entity's model struct and a typed
 slice):
 
-    getelevation, err := client.GetElevation(nil).List(map[string]any{/* fields */}, nil)
+    getElevation, err := client.GetElevation(nil).List(map[string]any{/* fields */}, nil)
     if err != nil { /* handle */ }
-    // getelevation is the returned record
+    // getElevation is the returned record
 
 Only `Direct()` returns a response envelope — a `map[string]any` with
 `"ok"`, `"status"`, `"headers"`, and `"data"` keys.
@@ -275,7 +275,7 @@ API path: `/{dataset}`
 
 ### GetElevation
 
-Create an instance: `get_elevation := client.GetElevation(nil)`
+Create an instance: `getElevation := client.GetElevation(nil)`
 
 #### Operations
 
@@ -294,11 +294,11 @@ Create an instance: `get_elevation := client.GetElevation(nil)`
 #### Example: List
 
 ```go
-get_elevations, err := client.GetElevation(nil).List(nil, nil)
+getElevations, err := client.GetElevation(nil).List(nil, nil)
 if err != nil {
     panic(err)
 }
-fmt.Println(get_elevations) // the array of records
+fmt.Println(getElevations) // the array of records
 ```
 
 

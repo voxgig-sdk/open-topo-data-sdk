@@ -90,7 +90,8 @@ same parameters as `Direct()`.
 ## GetElevationEntity
 
 ```go
-get_elevation := client.GetElevation(nil)
+getElevation := client.GetElevation(nil)
+fmt.Println(getElevation.GetName()) // "get_elevation"
 ```
 
 ### Fields
@@ -109,6 +110,10 @@ List entities matching the given criteria. Returns an array.
 
 ```go
 results, err := client.GetElevation(nil).List(nil, nil)
+if err != nil {
+    panic(err)
+}
+fmt.Println(results)
 ```
 
 ### Common Methods

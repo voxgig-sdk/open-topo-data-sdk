@@ -23,9 +23,9 @@ main: {
           url: "http://localhost:5000/v1"
         }
       ]
+      summary: "Open Topo Data is a REST API server that provides access to elevation data."
       title: "Open Topo Data"
       version: "1.0.0"
+      website: "https://www.opentopodata.org"
     }
   }
-}
-

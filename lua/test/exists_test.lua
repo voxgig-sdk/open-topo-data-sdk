@@ -1,4 +1,4 @@
--- ProjectName SDK exists test
+-- OpenTopoData SDK exists test
 
 local sdk = require("open-topo-data_sdk")
 

@@ -23,7 +23,7 @@ support (`list`):
 
 ```ts
 const client = new OpenTopoDataSDK()
-const items = await client.GetElevation().list()
+const items = await client.GetElevation().list({ id: "example" })
 ```
 
 Thinking in entities keeps the mental model small — for people and AI agents alike —
@@ -38,9 +38,18 @@ network, and no credentials:
 ### TypeScript
 
 ```ts
-const client = OpenTopoDataSDK.test()
+// The offline mock starts EMPTY — seed it with the records the test needs.
+// Shape: { entity: { <entity-name>: { <id>: <record> } } }
+const client = OpenTopoDataSDK.test({
+  entity: {
+    get_elevation: {
+      test01: { id: 'test01' },
+    },
+  },
+})
 const getelevations = await client.GetElevation().list()
-// getelevations is an array of bare GetElevation records populated with mock data
+// getelevations is an array of GetElevation entities, populated with mock data
+// — call getelevations[0].data() for the record itself
 console.log(getelevations)
 ```
 
@@ -110,8 +119,8 @@ import { OpenTopoDataSDK } from '@voxgig-sdk/open-topo-data'
 
 const client = new OpenTopoDataSDK()
 
-// List all getelevations (returns GetElevation[])
-const getelevations = await client.GetElevation().list()
+// List all getelevations (returns GetElevationEntity[] — .data() for the record)
+const getelevations = await client.GetElevation().list({ id: "example" })
 for (const getelevation of getelevations) {
   console.log(getelevation)
 }
@@ -170,7 +179,7 @@ from opentopodata_sdk import OpenTopoDataSDK
 client = OpenTopoDataSDK()
 
 # List all getelevations (returns a list, raises on error)
-getelevations = client.GetElevation().list()
+getelevations = client.GetElevation().list({"id": "example"})
 for getelevation in getelevations:
     print(getelevation)
 ```
@@ -343,6 +352,9 @@ Pass custom features via the `extend` option at construction time.
 
 This SDK is generated from the upstream OpenAPI specification. It is an
 unofficial client and is not affiliated with the API provider.
+
+The OpenAPI spec(s) this SDK was generated from are kept in the
+[`.sdk/def/`](.sdk/def/) folder.
 
 - Upstream API: [https://www.opentopodata.org](https://www.opentopodata.org)
 

@@ -14,12 +14,12 @@ from __future__ import annotations
 
 from urllib.parse import quote
 
-from config import make_config
-from features import _make_feature
-from core.control import OpenTopoDataControl
-from core.error import OpenTopoDataError
-from core.result import OpenTopoDataResult
-from core.spec import OpenTopoDataSpec
+from opentopodata_sdk.config import make_config
+from opentopodata_sdk.features import _make_feature
+from opentopodata_sdk.core.control import OpenTopoDataControl
+from opentopodata_sdk.core.error import OpenTopoDataError
+from opentopodata_sdk.core.result import OpenTopoDataResult
+from opentopodata_sdk.core.spec import OpenTopoDataSpec
 
 
 # True when this SDK was generated with the named feature.

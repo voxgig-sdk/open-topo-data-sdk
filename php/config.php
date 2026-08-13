@@ -93,6 +93,7 @@ class OpenTopoDataConfig
                       ],
                     ],
                   ],
+                  'kind' => 'http',
                   'method' => 'GET',
                   'orig' => '/{dataset}',
                   'parts' => [
@@ -112,7 +113,7 @@ class OpenTopoDataConfig
                   ],
                   'transform' => [
                     'req' => '`reqdata`',
-                    'res' => '`body`',
+                    'res' => '`body.results`',
                   ],
                   'index$' => 0,
                 ],

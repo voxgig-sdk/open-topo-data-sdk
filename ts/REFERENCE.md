@@ -127,7 +127,7 @@ const get_elevation = client.GetElevation()
 List entities matching the given criteria. Returns an array.
 
 ```ts
-const results = await client.GetElevation().list()
+const results = await client.GetElevation().list({ id: "example" })
 ```
 
 ### Common Methods

@@ -35,10 +35,12 @@ const client = new OpenTopoDataSDK()
 
 ### 2. List getelevation records
 
-`list()` resolves to an array of GetElevation objects — iterate it directly:
+`list()` resolves to an array of GetElevation ENTITIES — every operation
+resolves to entities, not raw records. Iterate them directly, and call
+`.data()` on one for the record it holds:
 
 ```ts
-const getelevations = await client.GetElevation().list()
+const getelevations = await client.GetElevation().list({ id: "example" })
 
 for (const getelevation of getelevations) {
   console.log(getelevation)
@@ -120,7 +122,8 @@ Create a mock client for unit testing — no server required:
 const client = OpenTopoDataSDK.test()
 
 const getelevation = await client.GetElevation().list()
-// getelevation is a bare entity populated with mock response data
+// getelevation is the entity, populated with mock response data
+// — call getelevation.data() for the record itself
 console.log(getelevation)
 ```
 
@@ -318,7 +321,7 @@ Create an instance: `const get_elevation = client.GetElevation()`
 #### Example: List
 
 ```ts
-const get_elevations = await client.GetElevation().list()
+const get_elevations = await client.GetElevation().list({ id: "example" })
 ```
 
 

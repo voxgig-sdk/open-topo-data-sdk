@@ -43,8 +43,8 @@ class OpenTopoDataTestRunner
 
     public static function env_override(array $m): array
     {
-        $live = self::getenv('OPENTOPODATA_TEST_LIVE');
-        $override = self::getenv('OPENTOPODATA_TEST_OVERRIDE');
+        $live = self::getenv('OPEN_TOPO_DATA_TEST_LIVE');
+        $override = self::getenv('OPEN_TOPO_DATA_TEST_OVERRIDE');
 
         if ($live === 'TRUE' || $override === 'TRUE') {
             foreach (array_keys($m) as $key) {
@@ -63,9 +63,9 @@ class OpenTopoDataTestRunner
             }
         }
 
-        $explain = self::getenv('OPENTOPODATA_TEST_EXPLAIN');
+        $explain = self::getenv('OPEN_TOPO_DATA_TEST_EXPLAIN');
         if ($explain !== null && $explain !== '') {
-            $m['OPENTOPODATA_TEST_EXPLAIN'] = $explain;
+            $m['OPEN_TOPO_DATA_TEST_EXPLAIN'] = $explain;
         }
 
         return $m;

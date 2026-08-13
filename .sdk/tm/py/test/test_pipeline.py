@@ -16,11 +16,11 @@
 import pytest
 
 from projectname_sdk import OpenTopoDataSDK
-from core.error import OpenTopoDataError
-from core.result import OpenTopoDataResult
-from core.response import OpenTopoDataResponse
-from core.spec import OpenTopoDataSpec
-from feature.base_feature import OpenTopoDataBaseFeature
+from projectname_sdk.core.error import OpenTopoDataError
+from projectname_sdk.core.result import OpenTopoDataResult
+from projectname_sdk.core.response import OpenTopoDataResponse
+from projectname_sdk.core.spec import OpenTopoDataSpec
+from projectname_sdk.feature.base_feature import OpenTopoDataBaseFeature
 
 
 def _client():

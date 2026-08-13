@@ -98,7 +98,7 @@ get_elevation = client.GetElevation()
 List entities matching the given criteria. The match is optional — call `list()` with no argument to list all records. Returns a list and raises on error.
 
 ```python
-results = client.GetElevation().list()
+results = client.GetElevation().list({"id": "example"})
 for get_elevation in results:
     print(get_elevation)
 ```

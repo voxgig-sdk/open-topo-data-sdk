@@ -23,8 +23,8 @@ module OpenTopoDataTestRunner
   end
 
   def self.env_override(m)
-    live = getenv("OPENTOPODATA_TEST_LIVE")
-    override = getenv("OPENTOPODATA_TEST_OVERRIDE")
+    live = getenv("OPEN_TOPO_DATA_TEST_LIVE")
+    override = getenv("OPEN_TOPO_DATA_TEST_OVERRIDE")
 
     if live == "TRUE" || override == "TRUE"
       m.each_key do |key|
@@ -44,8 +44,8 @@ module OpenTopoDataTestRunner
       end
     end
 
-    explain = getenv("OPENTOPODATA_TEST_EXPLAIN")
-    m["OPENTOPODATA_TEST_EXPLAIN"] = explain if explain && !explain.empty?
+    explain = getenv("OPEN_TOPO_DATA_TEST_EXPLAIN")
+    m["OPEN_TOPO_DATA_TEST_EXPLAIN"] = explain if explain && !explain.empty?
 
     m
   end

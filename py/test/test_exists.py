@@ -1,4 +1,4 @@
-# ProjectName SDK exists test
+# OpenTopoData SDK exists test
 
 import pytest
 from opentopodata_sdk import OpenTopoDataSDK

@@ -37,7 +37,7 @@ class GetElevationEntity extends OpenTopoDataEntityBase<GetElevation> {
 
 
 
-  async list(this: any, reqmatch?: GetElevationListMatch, ctrl?: Control): Promise<GetElevation[]> {
+  async list(this: any, reqmatch?: GetElevationListMatch, ctrl?: Control): Promise<GetElevationEntity[]> {
 
     const utility = this._utility
 

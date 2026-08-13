@@ -74,11 +74,11 @@ def get_elevation_direct_setup(mockres)
   calls = []
 
   env = Runner.env_override({
-    "OPENTOPODATA_TEST_GET_ELEVATION_ENTID" => {},
-    "OPENTOPODATA_TEST_LIVE" => "FALSE",
+    "OPEN_TOPO_DATA_TEST_GET_ELEVATION_ENTID" => {},
+    "OPEN_TOPO_DATA_TEST_LIVE" => "FALSE",
   })
 
-  live = env["OPENTOPODATA_TEST_LIVE"] == "TRUE"
+  live = env["OPEN_TOPO_DATA_TEST_LIVE"] == "TRUE"
 
   if live
     merged_opts = {

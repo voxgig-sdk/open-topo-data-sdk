@@ -23,6 +23,7 @@ require_once __DIR__ . '/MakeUrl.php';
 require_once __DIR__ . '/Param.php';
 require_once __DIR__ . '/PrepareAuth.php';
 require_once __DIR__ . '/PrepareBody.php';
+require_once __DIR__ . '/Graphql.php';
 require_once __DIR__ . '/PrepareHeaders.php';
 require_once __DIR__ . '/PrepareMethod.php';
 require_once __DIR__ . '/PrepareParams.php';
@@ -59,6 +60,8 @@ OpenTopoDataUtility::setRegistrar(function (OpenTopoDataUtility $u): void {
     $u->prepare_params = [OpenTopoDataPrepareParams::class, 'call'];
     $u->prepare_path = [OpenTopoDataPreparePath::class, 'call'];
     $u->prepare_query = [OpenTopoDataPrepareQuery::class, 'call'];
+    $u->graphql_body = [OpenTopoDataGraphql::class, 'body'];
+    $u->graphql_errors = [OpenTopoDataGraphql::class, 'errors'];
     $u->result_basic = [OpenTopoDataResultBasic::class, 'call'];
     $u->result_body = [OpenTopoDataResultBody::class, 'call'];
     $u->result_headers = [OpenTopoDataResultHeaders::class, 'call'];

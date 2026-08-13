@@ -26,8 +26,8 @@ import {
 describe('GetElevationEntity', async () => {
 
   // Per-test live pacing. Delay is read from sdk-test-control.json's
-  // `test.live.delayMs`; only sleeps when OPENTOPODATA_TEST_LIVE=TRUE.
-  afterEach(liveDelay('OPENTOPODATA_TEST_LIVE'))
+  // `test.live.delayMs`; only sleeps when OPEN_TOPO_DATA_TEST_LIVE=TRUE.
+  afterEach(liveDelay('OPEN_TOPO_DATA_TEST_LIVE'))
 
   test('instance', async () => {
     const testsdk = OpenTopoDataSDK.test()
@@ -64,7 +64,7 @@ describe('GetElevationEntity', async () => {
     const get_elevation_ref01_match: any = {}
     get_elevation_ref01_match['dataset'] = setup.idmap['dataset01']
 
-    const get_elevation_ref01_list = await get_elevation_ref01_ent.list(get_elevation_ref01_match)
+    const get_elevation_ref01_list = (await get_elevation_ref01_ent.list(get_elevation_ref01_match)).map((e: any) => e.data())
 
 
   })

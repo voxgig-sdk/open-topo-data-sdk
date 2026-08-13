@@ -24,6 +24,7 @@ require_relative 'prepare_method'
 require_relative 'prepare_params'
 require_relative 'prepare_path'
 require_relative 'prepare_query'
+require_relative 'graphql'
 require_relative 'result_basic'
 require_relative 'result_body'
 require_relative 'result_headers'
@@ -55,6 +56,8 @@ OpenTopoDataUtility.registrar = ->(u) {
   u.prepare_params = OpenTopoDataUtilities::PrepareParams
   u.prepare_path = OpenTopoDataUtilities::PreparePath
   u.prepare_query = OpenTopoDataUtilities::PrepareQuery
+  u.graphql_body = OpenTopoDataUtilities::GraphqlBody
+  u.graphql_errors = OpenTopoDataUtilities::GraphqlErrors
   u.result_basic = OpenTopoDataUtilities::ResultBasic
   u.result_body = OpenTopoDataUtilities::ResultBody
   u.result_headers = OpenTopoDataUtilities::ResultHeaders

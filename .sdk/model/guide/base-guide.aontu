@@ -9,6 +9,7 @@ guide: {
     path: "/{dataset}": {
       rename: param: "dataset": *"id"
       op: list: method: *GET
+      op: list: transform: res: *("`body.results`")|top
     }
   }
 

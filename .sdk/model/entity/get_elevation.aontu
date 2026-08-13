@@ -76,7 +76,7 @@ main: kit: entity: get_elevation: {
           }
           transform: {
             req: "`reqdata`"
-            res: "`body`"
+            res: "`body.results`"
           }
         }
       ]

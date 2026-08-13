@@ -218,9 +218,9 @@ data **directly** — there is no wrapper:
 
 Check `err` first (it is non-`nil` on failure), then use `value`:
 
-    local get_elevation, err = client:GetElevation():load()
+    local get_elevation, err = client:GetElevation():list()
     if err then error(err) end
-    -- get_elevation is the loaded record
+    -- get_elevation is the record list
 
 Only `direct()` returns a response envelope — a `table` with `ok`,
 `status`, `headers`, and `data` keys.

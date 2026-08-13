@@ -88,6 +88,7 @@ module OpenTopoDataConfig
                       },
                     ],
                   },
+                  "kind" => "http",
                   "method" => "GET",
                   "orig" => "/{dataset}",
                   "parts" => [
@@ -107,7 +108,7 @@ module OpenTopoDataConfig
                   },
                   "transform" => {
                     "req" => "`reqdata`",
-                    "res" => "`body`",
+                    "res" => "`body.results`",
                   },
                   "index$" => 0,
                 },

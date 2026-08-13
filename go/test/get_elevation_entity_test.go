@@ -92,7 +92,7 @@ func TestGetElevationEntity(t *testing.T) {
 		// The basic flow consumes synthetic IDs from the fixture. In live mode
 		// without an *_ENTID env override, those IDs hit the live API and 4xx.
 		if setup.syntheticOnly {
-			t.Skip("live entity test uses synthetic IDs from fixture — set OPENTOPODATA_TEST_GET_ELEVATION_ENTID JSON to run live")
+			t.Skip("live entity test uses synthetic IDs from fixture — set OPEN_TOPO_DATA_TEST_GET_ELEVATION_ENTID JSON to run live")
 			return
 		}
 		client := setup.client
@@ -162,21 +162,21 @@ func get_elevationBasicSetup(extra map[string]any) *entityTestSetup {
 	// Detect ENTID env override before envOverride consumes it. When live
 	// mode is on without a real override, the basic test runs against synthetic
 	// IDs from the fixture and 4xx's. Surface this so the test can skip.
-	entidEnvRaw := os.Getenv("OPENTOPODATA_TEST_GET_ELEVATION_ENTID")
+	entidEnvRaw := os.Getenv("OPEN_TOPO_DATA_TEST_GET_ELEVATION_ENTID")
 	idmapOverridden := entidEnvRaw != "" && strings.HasPrefix(strings.TrimSpace(entidEnvRaw), "{")
 
 	env := envOverride(map[string]any{
-		"OPENTOPODATA_TEST_GET_ELEVATION_ENTID": idmap,
-		"OPENTOPODATA_TEST_LIVE":      "FALSE",
-		"OPENTOPODATA_TEST_EXPLAIN":   "FALSE",
+		"OPEN_TOPO_DATA_TEST_GET_ELEVATION_ENTID": idmap,
+		"OPEN_TOPO_DATA_TEST_LIVE":      "FALSE",
+		"OPEN_TOPO_DATA_TEST_EXPLAIN":   "FALSE",
 	})
 
-	idmapResolved := core.ToMapAny(env["OPENTOPODATA_TEST_GET_ELEVATION_ENTID"])
+	idmapResolved := core.ToMapAny(env["OPEN_TOPO_DATA_TEST_GET_ELEVATION_ENTID"])
 	if idmapResolved == nil {
 		idmapResolved = core.ToMapAny(idmap)
 	}
 
-	if env["OPENTOPODATA_TEST_LIVE"] == "TRUE" {
+	if env["OPEN_TOPO_DATA_TEST_LIVE"] == "TRUE" {
 		mergedOpts := vs.Merge([]any{
 			map[string]any{
 			},
@@ -185,13 +185,13 @@ func get_elevationBasicSetup(extra map[string]any) *entityTestSetup {
 		client = sdk.NewOpenTopoDataSDK(core.ToMapAny(mergedOpts))
 	}
 
-	live := env["OPENTOPODATA_TEST_LIVE"] == "TRUE"
+	live := env["OPEN_TOPO_DATA_TEST_LIVE"] == "TRUE"
 	return &entityTestSetup{
 		client:        client,
 		data:          entityData,
 		idmap:         idmapResolved,
 		env:           env,
-		explain:       env["OPENTOPODATA_TEST_EXPLAIN"] == "TRUE",
+		explain:       env["OPEN_TOPO_DATA_TEST_EXPLAIN"] == "TRUE",
 		live:          live,
 		syntheticOnly: live && !idmapOverridden,
 		now:           time.Now().UnixMilli(),

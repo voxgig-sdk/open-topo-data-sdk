@@ -36,7 +36,7 @@ class Config {
 
 
   options = {
-    base: 'https://api.opentopodata.org/v1',
+    base: "https://api.opentopodata.org/v1",
 
     headers: {
       "content-type": "application/json"
@@ -55,25 +55,19 @@ class Config {
     "get_elevation": {
       "fields": [
         {
-          "active": true,
           "name": "dataset",
           "req": true,
-          "type": "`$STRING`",
-          "index$": 0
+          "type": "`$STRING`"
         },
         {
-          "active": true,
           "name": "elevation",
           "req": true,
-          "type": "`$NUMBER`",
-          "index$": 1
+          "type": "`$NUMBER`"
         },
         {
-          "active": true,
           "name": "location",
           "req": true,
-          "type": "`$OBJECT`",
-          "index$": 2
+          "type": "`$OBJECT`"
         }
       ],
       "name": "get_elevation",
@@ -83,31 +77,25 @@ class Config {
           "name": "list",
           "points": [
             {
-              "active": true,
               "args": {
                 "params": [
                   {
-                    "active": true,
                     "example": "test-dataset",
                     "kind": "param",
                     "name": "id",
                     "orig": "dataset",
                     "reqd": true,
-                    "type": "`$STRING`",
-                    "index$": 0
+                    "type": "`$STRING`"
                   }
                 ],
                 "query": [
                   {
-                    "active": true,
                     "kind": "query",
                     "name": "interpolation",
                     "orig": "interpolation",
-                    "reqd": false,
                     "type": "`$STRING`"
                   },
                   {
-                    "active": true,
                     "example": "56.35,123.90",
                     "kind": "query",
                     "name": "location",
@@ -138,11 +126,9 @@ class Config {
               "transform": {
                 "req": "`reqdata`",
                 "res": "`body.results`"
-              },
-              "index$": 0
+              }
             }
-          ],
-          "key$": "list"
+          ]
         }
       },
       "relations": {

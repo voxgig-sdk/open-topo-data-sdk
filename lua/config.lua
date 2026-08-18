@@ -1,5 +1,8 @@
 -- OpenTopoData SDK configuration
 
+-- Build a fresh, fully materialised config table. Every call rebuilds the
+-- whole structure, so prefer require("config_shared") unless you need a
+-- private copy you intend to mutate.
 local function make_config()
   return {
     main = {
@@ -25,25 +28,19 @@ local function make_config()
       ["get_elevation"] = {
         ["fields"] = {
           {
-            ["active"] = true,
             ["name"] = "dataset",
             ["req"] = true,
             ["type"] = "`$STRING`",
-            ["index$"] = 0,
           },
           {
-            ["active"] = true,
             ["name"] = "elevation",
             ["req"] = true,
             ["type"] = "`$NUMBER`",
-            ["index$"] = 1,
           },
           {
-            ["active"] = true,
             ["name"] = "location",
             ["req"] = true,
             ["type"] = "`$OBJECT`",
-            ["index$"] = 2,
           },
         },
         ["name"] = "get_elevation",
@@ -53,31 +50,25 @@ local function make_config()
             ["name"] = "list",
             ["points"] = {
               {
-                ["active"] = true,
                 ["args"] = {
                   ["params"] = {
                     {
-                      ["active"] = true,
                       ["example"] = "test-dataset",
                       ["kind"] = "param",
                       ["name"] = "id",
                       ["orig"] = "dataset",
                       ["reqd"] = true,
                       ["type"] = "`$STRING`",
-                      ["index$"] = 0,
                     },
                   },
                   ["query"] = {
                     {
-                      ["active"] = true,
                       ["kind"] = "query",
                       ["name"] = "interpolation",
                       ["orig"] = "interpolation",
-                      ["reqd"] = false,
                       ["type"] = "`$STRING`",
                     },
                     {
-                      ["active"] = true,
                       ["example"] = "56.35,123.90",
                       ["kind"] = "query",
                       ["name"] = "location",
@@ -109,10 +100,8 @@ local function make_config()
                   ["req"] = "`reqdata`",
                   ["res"] = "`body.results`",
                 },
-                ["index$"] = 0,
               },
             },
-            ["key$"] = "list",
           },
         },
         ["relations"] = {

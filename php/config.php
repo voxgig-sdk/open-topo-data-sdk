@@ -5,6 +5,29 @@ declare(strict_types=1);
 
 class OpenTopoDataConfig
 {
+    /** @var array<string,mixed>|null */
+    private static ?array $shared_config = null;
+
+    /**
+     * Return the process-wide config, built once on first use. The SDK reads
+     * the config on every request and never writes to it, so one instance is
+     * shared by every client rather than rebuilt per client.
+     *
+     * PHP arrays are copy-on-write, so callers that do mutate the result get
+     * their own copy and cannot disturb the shared one.
+     */
+    public static function shared_config(): array
+    {
+        if (self::$shared_config === null) {
+            self::$shared_config = self::make_config();
+        }
+        return self::$shared_config;
+    }
+
+    /**
+     * Build a fresh, fully materialised config array. Every call rebuilds the
+     * whole structure, so prefer shared_config unless you need a private copy.
+     */
     public static function make_config(): array
     {
         return [
@@ -31,25 +54,19 @@ class OpenTopoDataConfig
         'get_elevation' => [
           'fields' => [
             [
-              'active' => true,
               'name' => 'dataset',
               'req' => true,
               'type' => '`$STRING`',
-              'index$' => 0,
             ],
             [
-              'active' => true,
               'name' => 'elevation',
               'req' => true,
               'type' => '`$NUMBER`',
-              'index$' => 1,
             ],
             [
-              'active' => true,
               'name' => 'location',
               'req' => true,
               'type' => '`$OBJECT`',
-              'index$' => 2,
             ],
           ],
           'name' => 'get_elevation',
@@ -59,31 +76,25 @@ class OpenTopoDataConfig
               'name' => 'list',
               'points' => [
                 [
-                  'active' => true,
                   'args' => [
                     'params' => [
                       [
-                        'active' => true,
                         'example' => 'test-dataset',
                         'kind' => 'param',
                         'name' => 'id',
                         'orig' => 'dataset',
                         'reqd' => true,
                         'type' => '`$STRING`',
-                        'index$' => 0,
                       ],
                     ],
                     'query' => [
                       [
-                        'active' => true,
                         'kind' => 'query',
                         'name' => 'interpolation',
                         'orig' => 'interpolation',
-                        'reqd' => false,
                         'type' => '`$STRING`',
                       ],
                       [
-                        'active' => true,
                         'example' => '56.35,123.90',
                         'kind' => 'query',
                         'name' => 'location',
@@ -115,10 +126,8 @@ class OpenTopoDataConfig
                     'req' => '`reqdata`',
                     'res' => '`body.results`',
                   ],
-                  'index$' => 0,
                 ],
               ],
-              'key$' => 'list',
             ],
           ],
           'relations' => [

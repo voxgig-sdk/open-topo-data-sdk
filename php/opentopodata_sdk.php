@@ -40,7 +40,7 @@ class OpenTopoDataSDK
         $utility = new OpenTopoDataUtility();
         $this->_utility = $utility;
 
-        $config = OpenTopoDataConfig::make_config();
+        $config = OpenTopoDataConfig::shared_config();
 
         $this->_rootctx = ($utility->make_context)([
             "client" => $this,

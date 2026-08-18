@@ -28,7 +28,7 @@ class OpenTopoDataSDK
     utility = OpenTopoDataUtility.new
     @_utility = utility
 
-    config = OpenTopoDataConfig.make_config
+    config = OpenTopoDataConfig.shared_config
 
     @_rootctx = utility.make_context.call({
       "client" => self,

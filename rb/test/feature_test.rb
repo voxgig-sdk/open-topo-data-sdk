@@ -15,7 +15,7 @@ require_relative "../OpenTopoData_sdk"
 module OpenTopoDataFeatureHarness
   # True when this SDK was generated with the named feature.
   def self.has_feature?(name)
-    f = OpenTopoDataConfig.make_config["feature"]
+    f = OpenTopoDataConfig.shared_config["feature"]
     f.is_a?(Hash) && !f[name].nil?
   end
 

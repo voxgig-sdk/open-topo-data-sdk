@@ -231,9 +231,9 @@ Only `direct()` returns a response envelope — a `table` with `ok`,
 
 | Field | Description |
 | --- | --- |
-| `dataset` |  |
-| `elevation` |  |
-| `location` |  |
+| `dataset` | The dataset used for this elevation query |
+| `elevation` | The elevation in meters at the specified location |
+| `location` | The location coordinates |
 
 Operations: List.
 
@@ -258,9 +258,9 @@ Create an instance: `local get_elevation = client:GetElevation(nil)`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `dataset` | `string` |  |
-| `elevation` | `number` |  |
-| `location` | `table` |  |
+| `dataset` | `string` | The dataset used for this elevation query |
+| `elevation` | `number` | The elevation in meters at the specified location |
+| `location` | `table` | The location coordinates |
 
 #### Example: List
 

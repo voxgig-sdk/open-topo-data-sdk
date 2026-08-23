@@ -90,9 +90,9 @@ local get_elevation = client:GetElevation(nil)
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `dataset` | `string` | Yes |  |
-| `elevation` | `number` | Yes |  |
-| `location` | `table` | Yes |  |
+| `dataset` | `string` | Yes | The dataset used for this elevation query |
+| `elevation` | `number` | Yes | The elevation in meters at the specified location |
+| `location` | `table` | Yes | The location coordinates |
 
 ### Operations
 

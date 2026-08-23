@@ -28,6 +28,9 @@ def make_config():
     return {
         "main": {
             "name": "OpenTopoData",
+            "slug": "open-topo-data",
+            "version": "0.0.1",
+            "target": "py",
         },
         "feature": {
             "test": {
@@ -51,16 +54,19 @@ def make_config():
           {
             "name": "dataset",
             "req": True,
+            "short": "The dataset used for this elevation query",
             "type": "`$STRING`",
           },
           {
             "name": "elevation",
             "req": True,
+            "short": "The elevation in meters at the specified location",
             "type": "`$NUMBER`",
           },
           {
             "name": "location",
             "req": True,
+            "short": "The location coordinates",
             "type": "`$OBJECT`",
           },
         ],

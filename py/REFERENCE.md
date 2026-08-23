@@ -87,9 +87,9 @@ get_elevation = client.GetElevation()
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `dataset` | `str` | Yes |  |
-| `elevation` | `float` | Yes |  |
-| `location` | `dict` | Yes |  |
+| `dataset` | `str` | Yes | The dataset used for this elevation query |
+| `elevation` | `float` | Yes | The elevation in meters at the specified location |
+| `location` | `dict` | Yes | The location coordinates |
 
 ### Operations
 

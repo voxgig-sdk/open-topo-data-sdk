@@ -92,9 +92,9 @@ $get_elevation = $client->GetElevation();
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `dataset` | `string` | Yes |  |
-| `elevation` | `float` | Yes |  |
-| `location` | `array` | Yes |  |
+| `dataset` | `string` | Yes | The dataset used for this elevation query |
+| `elevation` | `float` | Yes | The elevation in meters at the specified location |
+| `location` | `array` | Yes | The location coordinates |
 
 ### Operations
 

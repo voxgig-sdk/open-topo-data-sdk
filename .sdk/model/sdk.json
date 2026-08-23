@@ -36,18 +36,21 @@
               "active": true,
               "name": "dataset",
               "req": true,
+              "short": "The dataset used for this elevation query",
               "type": "`$STRING`"
             },
             {
               "active": true,
               "name": "elevation",
               "req": true,
+              "short": "The elevation in meters at the specified location",
               "type": "`$NUMBER`"
             },
             {
               "active": true,
               "name": "location",
               "req": true,
+              "short": "The location coordinates",
               "type": "`$OBJECT`"
             }
           ],

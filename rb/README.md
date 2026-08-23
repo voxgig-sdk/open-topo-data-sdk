@@ -237,9 +237,9 @@ returns a result `Hash` with these keys:
 
 | Field | Description |
 | --- | --- |
-| `dataset` |  |
-| `elevation` |  |
-| `location` |  |
+| `dataset` | The dataset used for this elevation query |
+| `elevation` | The elevation in meters at the specified location |
+| `location` | The location coordinates |
 
 Operations: List.
 
@@ -264,9 +264,9 @@ Create an instance: `get_elevation = client.GetElevation`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `dataset` | `String` |  |
-| `elevation` | `Float` |  |
-| `location` | `Hash` |  |
+| `dataset` | `String` | The dataset used for this elevation query |
+| `elevation` | `Float` | The elevation in meters at the specified location |
+| `location` | `Hash` | The location coordinates |
 
 #### Example: List
 

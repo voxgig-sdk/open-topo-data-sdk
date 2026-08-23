@@ -33,6 +33,9 @@ class OpenTopoDataConfig
         return [
             "main" => [
                 "name" => "OpenTopoData",
+                "slug" => "open-topo-data",
+                "version" => "0.0.1",
+                "target" => "php",
             ],
             "feature" => [
                 "test" => [
@@ -56,16 +59,19 @@ class OpenTopoDataConfig
             [
               'name' => 'dataset',
               'req' => true,
+              'short' => 'The dataset used for this elevation query',
               'type' => '`$STRING`',
             ],
             [
               'name' => 'elevation',
               'req' => true,
+              'short' => 'The elevation in meters at the specified location',
               'type' => '`$NUMBER`',
             ],
             [
               'name' => 'location',
               'req' => true,
+              'short' => 'The location coordinates',
               'type' => '`$OBJECT`',
             ],
           ],

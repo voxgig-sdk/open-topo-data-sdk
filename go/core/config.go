@@ -11,6 +11,9 @@ func MakeConfig() map[string]any {
 	return map[string]any{
 		"main": map[string]any{
 			"name": "OpenTopoData",
+			"slug": "open-topo-data",
+			"version": "0.0.1",
+			"target": "go",
 		},
 		"feature": map[string]any{
 			"test": map[string]any{
@@ -34,16 +37,19 @@ func MakeConfig() map[string]any {
 					map[string]any{
 						"name": "dataset",
 						"req": true,
+						"short": "The dataset used for this elevation query",
 						"type": "`$STRING`",
 					},
 					map[string]any{
 						"name": "elevation",
 						"req": true,
+						"short": "The elevation in meters at the specified location",
 						"type": "`$NUMBER`",
 					},
 					map[string]any{
 						"name": "location",
 						"req": true,
+						"short": "The location coordinates",
 						"type": "`$OBJECT`",
 					},
 				},

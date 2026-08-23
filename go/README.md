@@ -6,7 +6,7 @@ The Golang SDK for the OpenTopoData API — an entity-oriented client using stan
 
 It exposes the API as capitalised, semantic **Entities** — e.g. `client.GetElevation(nil)` — each with the same small set of operations (`List`) instead of raw URL paths and query strings. You call meaning, not endpoints, which keeps the cognitive load low.
 
-> Other languages, the CLI, and MCP server live alongside this one — see
+> Also generated from this model: `go-cli`, `go-mcp`, `lua`, `php`, `py`, `rb`, `ts` — see
 > the [top-level README](../README.md).
 
 
@@ -260,9 +260,9 @@ Only `Direct()` returns a response envelope — a `map[string]any` with
 
 | Field | Description |
 | --- | --- |
-| `"dataset"` |  |
-| `"elevation"` |  |
-| `"location"` |  |
+| `"dataset"` | The dataset used for this elevation query |
+| `"elevation"` | The elevation in meters at the specified location |
+| `"location"` | The location coordinates |
 
 Operations: List.
 
@@ -287,9 +287,9 @@ Create an instance: `getElevation := client.GetElevation(nil)`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `dataset` | `string` |  |
-| `elevation` | `float64` |  |
-| `location` | `map[string]any` |  |
+| `dataset` | `string` | The dataset used for this elevation query |
+| `elevation` | `float64` | The elevation in meters at the specified location |
+| `location` | `map[string]any` | The location coordinates |
 
 #### Example: List
 

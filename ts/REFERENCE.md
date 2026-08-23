@@ -116,9 +116,9 @@ const get_elevation = client.GetElevation()
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `dataset` | `string` | Yes |  |
-| `elevation` | `number` | Yes |  |
-| `location` | `Record<string, any>` | Yes |  |
+| `dataset` | `string` | Yes | The dataset used for this elevation query |
+| `elevation` | `number` | Yes | The elevation in meters at the specified location |
+| `location` | `Record<string, any>` | Yes | The location coordinates |
 
 ### Operations
 

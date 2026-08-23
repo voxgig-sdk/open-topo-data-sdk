@@ -243,9 +243,9 @@ On error, `ok` is `False` and `err` contains the error value.
 
 | Field | Description |
 | --- | --- |
-| `dataset` |  |
-| `elevation` |  |
-| `location` |  |
+| `dataset` | The dataset used for this elevation query |
+| `elevation` | The elevation in meters at the specified location |
+| `location` | The location coordinates |
 
 Operations: List.
 
@@ -270,9 +270,9 @@ Create an instance: `get_elevation = client.GetElevation()`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `dataset` | `str` |  |
-| `elevation` | `float` |  |
-| `location` | `dict` |  |
+| `dataset` | `str` | The dataset used for this elevation query |
+| `elevation` | `float` | The elevation in meters at the specified location |
+| `location` | `dict` | The location coordinates |
 
 #### Example: List
 

@@ -9,6 +9,7 @@
 ---@class GetElevation
 ---@field dataset string
 ---@field elevation number
+---@field id? string
 ---@field location table
 
 ---@class GetElevationListMatch

@@ -37,7 +37,7 @@ begin
   # list returns an Array of GetElevation records — iterate directly.
   getelevations = client.GetElevation.list
   getelevations.each do |item|
-    puts "#{item["dataset"]}"
+    puts "#{item["id"]} #{item["dataset"]}"
   end
 rescue => err
   warn "list failed: #{err}"
@@ -239,6 +239,7 @@ returns a result `Hash` with these keys:
 | --- | --- |
 | `dataset` | The dataset used for this elevation query |
 | `elevation` | The elevation in meters at the specified location |
+| `id` |  |
 | `location` | The location coordinates |
 
 Operations: List.
@@ -266,6 +267,7 @@ Create an instance: `get_elevation = client.GetElevation`
 | --- | --- | --- |
 | `dataset` | `String` | The dataset used for this elevation query |
 | `elevation` | `Float` | The elevation in meters at the specified location |
+| `id` | `String` |  |
 | `location` | `Hash` | The location coordinates |
 
 #### Example: List

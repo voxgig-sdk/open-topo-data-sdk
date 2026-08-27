@@ -100,6 +100,7 @@ fmt.Println(getElevation.GetName()) // "get_elevation"
 | --- | --- | --- | --- |
 | `dataset` | `string` | Yes | The dataset used for this elevation query |
 | `elevation` | `float64` | Yes | The elevation in meters at the specified location |
+| `id` | `string` | No |  |
 | `location` | `map[string]any` | Yes | The location coordinates |
 
 ### Operations

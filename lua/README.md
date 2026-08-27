@@ -43,7 +43,7 @@ local getelevations, err = client:GetElevation():list()
 if err then error(err) end
 
 for _, item in ipairs(getelevations) do
-  print(item["dataset"])
+  print(item["id"], item["dataset"])
 end
 ```
 
@@ -233,6 +233,7 @@ Only `direct()` returns a response envelope — a `table` with `ok`,
 | --- | --- |
 | `dataset` | The dataset used for this elevation query |
 | `elevation` | The elevation in meters at the specified location |
+| `id` |  |
 | `location` | The location coordinates |
 
 Operations: List.
@@ -260,6 +261,7 @@ Create an instance: `local get_elevation = client:GetElevation(nil)`
 | --- | --- | --- |
 | `dataset` | `string` | The dataset used for this elevation query |
 | `elevation` | `number` | The elevation in meters at the specified location |
+| `id` | `string` |  |
 | `location` | `table` | The location coordinates |
 
 #### Example: List

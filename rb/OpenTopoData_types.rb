@@ -16,11 +16,15 @@
 # @!attribute [rw] elevation
 #   @return [Float]
 #
+# @!attribute [rw] id
+#   @return [String, nil]
+#
 # @!attribute [rw] location
 #   @return [Hash]
 GetElevation = Struct.new(
   :dataset,
   :elevation,
+  :id,
   :location,
   keyword_init: true
 )

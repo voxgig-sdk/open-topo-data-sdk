@@ -16,10 +16,14 @@ from __future__ import annotations
 from typing import TypedDict, Any
 
 
-class GetElevation(TypedDict):
+class GetElevationRequired(TypedDict):
     dataset: str
     elevation: float
     location: dict
+
+
+class GetElevation(GetElevationRequired, total=False):
+    id: str
 
 
 class GetElevationListMatch(TypedDict):

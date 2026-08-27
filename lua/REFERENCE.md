@@ -92,6 +92,7 @@ local get_elevation = client:GetElevation(nil)
 | --- | --- | --- | --- |
 | `dataset` | `string` | Yes | The dataset used for this elevation query |
 | `elevation` | `number` | Yes | The elevation in meters at the specified location |
+| `id` | `string` | No |  |
 | `location` | `table` | Yes | The location coordinates |
 
 ### Operations

@@ -146,7 +146,7 @@ await entity.list()
 
 // Subsequent calls reuse the stored state
 const data = entity.data()
-console.log(data)
+console.log(data.id)
 ```
 
 ### Add custom middleware
@@ -289,6 +289,7 @@ The `prepare()` method returns:
 | --- | --- |
 | `dataset` | The dataset used for this elevation query |
 | `elevation` | The elevation in meters at the specified location |
+| `id` |  |
 | `location` | The location coordinates |
 
 Operations: list.
@@ -316,6 +317,7 @@ Create an instance: `const get_elevation = client.GetElevation()`
 | --- | --- | --- |
 | `dataset` | `string` | The dataset used for this elevation query |
 | `elevation` | `number` | The elevation in meters at the specified location |
+| `id` | `string` |  |
 | `location` | `Record<string, any>` | The location coordinates |
 
 #### Example: List

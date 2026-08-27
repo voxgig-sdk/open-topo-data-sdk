@@ -42,6 +42,7 @@ class OpenTopoDataConfig
           'options' => [
             'active' => false,
           ],
+          'transport' => 'base',
         ],
             ],
             "options" => [
@@ -67,6 +68,10 @@ class OpenTopoDataConfig
               'req' => true,
               'short' => 'The elevation in meters at the specified location',
               'type' => '`$NUMBER`',
+            ],
+            [
+              'name' => 'id',
+              'type' => '`$STRING`',
             ],
             [
               'name' => 'location',

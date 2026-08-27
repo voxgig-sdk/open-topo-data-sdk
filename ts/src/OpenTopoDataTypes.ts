@@ -8,6 +8,7 @@
 export interface GetElevation {
   dataset: string
   elevation: number
+  id?: string
   location: Record<string, any>
 }
 

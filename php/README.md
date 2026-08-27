@@ -38,7 +38,7 @@ try {
     // list() returns an array of GetElevation records — iterate directly.
     $getelevations = $client->GetElevation()->list();
     foreach ($getelevations as $item) {
-        echo $item["dataset"] . "\n";
+        echo $item["id"] . " " . $item["dataset"] . "\n";
     }
 } catch (\Throwable $err) {
     echo "Error: " . $err->getMessage();
@@ -249,6 +249,7 @@ On error, `ok` is `false` and `$err` contains the error value.
 | --- | --- |
 | `dataset` | The dataset used for this elevation query |
 | `elevation` | The elevation in meters at the specified location |
+| `id` |  |
 | `location` | The location coordinates |
 
 Operations: List.
@@ -276,6 +277,7 @@ Create an instance: `$get_elevation = $client->GetElevation();`
 | --- | --- | --- |
 | `dataset` | `string` | The dataset used for this elevation query |
 | `elevation` | `float` | The elevation in meters at the specified location |
+| `id` | `string` |  |
 | `location` | `array` | The location coordinates |
 
 #### Example: List

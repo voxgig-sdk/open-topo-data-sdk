@@ -18,12 +18,22 @@ main: kit: entity: get_elevation: {
       type: "`$NUMBER`"
     }
     {
+      name: "id"
+      req: false
+      type: "`$STRING`"
+    }
+    {
       name: "location"
       req: true
       short: "The location coordinates"
       type: "`$OBJECT`"
     }
   ]
+
+  id: {
+    field: "id"
+    name: "id"
+  }
 
   name: "get_elevation"
   op: {

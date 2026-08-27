@@ -40,7 +40,8 @@ class Config {
      test:     {
       "options": {
         "active": false
-      }
+      },
+      "transport": "base"
     },
 
   }
@@ -76,6 +77,10 @@ class Config {
           "req": true,
           "short": "The elevation in meters at the specified location",
           "type": "`$NUMBER`"
+        },
+        {
+          "name": "id",
+          "type": "`$STRING`"
         },
         {
           "name": "location",

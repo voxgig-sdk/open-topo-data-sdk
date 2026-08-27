@@ -17,6 +17,7 @@ class GetElevation
 {
     public string $dataset;
     public float $elevation;
+    public ?string $id = null;
     public array $location;
 }
 

@@ -262,6 +262,7 @@ Only `Direct()` returns a response envelope — a `map[string]any` with
 | --- | --- |
 | `"dataset"` | The dataset used for this elevation query |
 | `"elevation"` | The elevation in meters at the specified location |
+| `"id"` |  |
 | `"location"` | The location coordinates |
 
 Operations: List.
@@ -289,6 +290,7 @@ Create an instance: `getElevation := client.GetElevation(nil)`
 | --- | --- | --- |
 | `dataset` | `string` | The dataset used for this elevation query |
 | `elevation` | `float64` | The elevation in meters at the specified location |
+| `id` | `string` |  |
 | `location` | `map[string]any` | The location coordinates |
 
 #### Example: List

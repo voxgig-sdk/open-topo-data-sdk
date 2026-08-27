@@ -37,6 +37,7 @@ def make_config():
         "options": {
           "active": False,
         },
+        "transport": "base",
       },
         },
         "options": {
@@ -62,6 +63,10 @@ def make_config():
             "req": True,
             "short": "The elevation in meters at the specified location",
             "type": "`$NUMBER`",
+          },
+          {
+            "name": "id",
+            "type": "`$STRING`",
           },
           {
             "name": "location",

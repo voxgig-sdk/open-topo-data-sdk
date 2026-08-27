@@ -95,6 +95,7 @@ get_elevation = client.GetElevation
 | --- | --- | --- | --- |
 | `dataset` | `String` | Yes | The dataset used for this elevation query |
 | `elevation` | `Float` | Yes | The elevation in meters at the specified location |
+| `id` | `String` | No |  |
 | `location` | `Hash` | Yes | The location coordinates |
 
 ### Operations

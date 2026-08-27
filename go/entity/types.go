@@ -16,6 +16,7 @@ import (
 type GetElevation struct {
 	Dataset string `json:"dataset"`
 	Elevation float64 `json:"elevation"`
+	Id *string `json:"id,omitempty"`
 	Location map[string]any `json:"location"`
 }
 

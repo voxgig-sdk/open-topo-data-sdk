@@ -14,6 +14,8 @@
 
 ---@class GetElevationListMatch
 ---@field id string
+---@field interpolation? string
+---@field location string
 
 local M = {}
 

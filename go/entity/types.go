@@ -23,6 +23,8 @@ type GetElevation struct {
 // GetElevationListMatch is the typed request payload for GetElevation.ListTyped.
 type GetElevationListMatch struct {
 	Id string `json:"id"`
+	Interpolation *string `json:"interpolation,omitempty"`
+	Location string `json:"location"`
 }
 
 // asMap turns a typed request/data struct into the map[string]any the

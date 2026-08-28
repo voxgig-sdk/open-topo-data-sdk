@@ -14,5 +14,7 @@ export interface GetElevation {
 
 export interface GetElevationListMatch {
   id: string
+  interpolation?: string
+  location: string
 }
 

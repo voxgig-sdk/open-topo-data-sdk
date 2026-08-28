@@ -33,8 +33,16 @@ GetElevation = Struct.new(
 #
 # @!attribute [rw] id
 #   @return [String]
+#
+# @!attribute [rw] interpolation
+#   @return [String, nil]
+#
+# @!attribute [rw] location
+#   @return [String]
 GetElevationListMatch = Struct.new(
   :id,
+  :interpolation,
+  :location,
   keyword_init: true
 )
 

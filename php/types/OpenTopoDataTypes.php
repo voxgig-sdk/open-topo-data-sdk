@@ -25,5 +25,7 @@ class GetElevation
 class GetElevationListMatch
 {
     public string $id;
+    public ?string $interpolation = null;
+    public string $location;
 }
 

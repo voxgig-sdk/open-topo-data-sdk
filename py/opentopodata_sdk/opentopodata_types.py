@@ -26,5 +26,10 @@ class GetElevation(GetElevationRequired, total=False):
     id: str
 
 
-class GetElevationListMatch(TypedDict):
+class GetElevationListMatchRequired(TypedDict):
     id: str
+    location: str
+
+
+class GetElevationListMatch(GetElevationListMatchRequired, total=False):
+    interpolation: str

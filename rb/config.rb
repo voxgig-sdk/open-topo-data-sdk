@@ -50,6 +50,7 @@ module OpenTopoDataConfig
               "type" => "`$STRING`",
             },
             {
+              "format" => "float",
               "name" => "elevation",
               "req" => true,
               "short" => "The elevation in meters at the specified location",
@@ -66,6 +67,10 @@ module OpenTopoDataConfig
               "type" => "`$OBJECT`",
             },
           ],
+          "id" => {
+            "field" => "id",
+            "name" => "id",
+          },
           "name" => "get_elevation",
           "op" => {
             "list" => {
@@ -104,14 +109,16 @@ module OpenTopoDataConfig
                   "kind" => "http",
                   "method" => "GET",
                   "orig" => "/{dataset}",
-                  "parts" => [
-                    "{id}",
-                  ],
                   "rename" => {
                     "param" => {
                       "dataset" => "id",
                     },
                   },
+                  "segments" => [
+                    {
+                      "var" => "id",
+                    },
+                  ],
                   "select" => {
                     "exist" => [
                       "id",
@@ -123,6 +130,9 @@ module OpenTopoDataConfig
                     "req" => "`reqdata`",
                     "res" => "`body.results`",
                   },
+                  "parts" => [
+                    "{id}",
+                  ],
                 },
               ],
             },

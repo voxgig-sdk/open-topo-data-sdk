@@ -12,6 +12,7 @@ main: kit: entity: get_elevation: {
       type: "`$STRING`"
     }
     {
+      format: "float"
       name: "elevation"
       req: true
       short: "The elevation in meters at the specified location"
@@ -72,14 +73,16 @@ main: kit: entity: get_elevation: {
           }
           method: "GET"
           orig: "/{dataset}"
-          parts: [
-            "{id}"
-          ]
           rename: {
             param: {
               dataset: "id"
             }
           }
+          segments: [
+            {
+              var: "id"
+            }
+          ]
           select: {
             exist: [
               "id"

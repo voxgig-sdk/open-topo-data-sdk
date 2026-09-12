@@ -64,6 +64,7 @@ class OpenTopoDataConfig
               'type' => '`$STRING`',
             ],
             [
+              'format' => 'float',
               'name' => 'elevation',
               'req' => true,
               'short' => 'The elevation in meters at the specified location',
@@ -79,6 +80,10 @@ class OpenTopoDataConfig
               'short' => 'The location coordinates',
               'type' => '`$OBJECT`',
             ],
+          ],
+          'id' => [
+            'field' => 'id',
+            'name' => 'id',
           ],
           'name' => 'get_elevation',
           'op' => [
@@ -118,12 +123,14 @@ class OpenTopoDataConfig
                   'kind' => 'http',
                   'method' => 'GET',
                   'orig' => '/{dataset}',
-                  'parts' => [
-                    '{id}',
-                  ],
                   'rename' => [
                     'param' => [
                       'dataset' => 'id',
+                    ],
+                  ],
+                  'segments' => [
+                    [
+                      'var' => 'id',
                     ],
                   ],
                   'select' => [
@@ -136,6 +143,9 @@ class OpenTopoDataConfig
                   'transform' => [
                     'req' => '`reqdata`',
                     'res' => '`body.results`',
+                  ],
+                  'parts' => [
+                    '{id}',
                   ],
                 ],
               ],

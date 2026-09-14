@@ -105,7 +105,7 @@ local results, err = client:GetElevation():list()
 
 | Language | Package | Install |
 | --- | --- | --- |
-| TypeScript | `@voxgig-sdk/open-topo-data` | publish pending — [install from git tag](https://github.com/voxgig-sdk/open-topo-data-sdk/releases) |
+| TypeScript | `@voxgig-sdk/open-topo-data-sdk` | publish pending — [install from git tag](https://github.com/voxgig-sdk/open-topo-data-sdk/releases) |
 | Python | `voxgig-sdk-open-topo-data` | publish pending — [install from git tag](https://github.com/voxgig-sdk/open-topo-data-sdk/releases) |
 | PHP | `voxgig-sdk/open-topo-data` | publish pending — [install from git tag](https://github.com/voxgig-sdk/open-topo-data-sdk/releases) |
 | Golang | `github.com/voxgig-sdk/open-topo-data-sdk/go` | `go get github.com/voxgig-sdk/open-topo-data-sdk/go@latest` |
@@ -119,7 +119,7 @@ local results, err = client:GetElevation():list()
 ### TypeScript
 
 ```ts
-import { OpenTopoDataSDK } from '@voxgig-sdk/open-topo-data'
+import { OpenTopoDataSDK } from '@voxgig-sdk/open-topo-data-sdk'
 
 const client = new OpenTopoDataSDK()
 

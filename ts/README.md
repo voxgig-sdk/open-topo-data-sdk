@@ -28,7 +28,7 @@ loading a specific record.
 ### 1. Create a client
 
 ```ts
-import { OpenTopoDataSDK } from '@voxgig-sdk/open-topo-data'
+import { OpenTopoDataSDK } from '@voxgig-sdk/open-topo-data-sdk'
 
 const client = new OpenTopoDataSDK()
 ```
@@ -409,7 +409,7 @@ open-topo-data/
 Import the SDK from the package root:
 
 ```ts
-import { OpenTopoDataSDK } from '@voxgig-sdk/open-topo-data'
+import { OpenTopoDataSDK } from '@voxgig-sdk/open-topo-data-sdk'
 ```
 
 ### Entity state

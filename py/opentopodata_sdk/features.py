@@ -1,12 +1,18 @@
 # OpenTopoData SDK feature factory
 
 from opentopodata_sdk.feature.base_feature import OpenTopoDataBaseFeature
+from opentopodata_sdk.feature.ratelimit_feature import OpenTopoDataRatelimitFeature
+from opentopodata_sdk.feature.retry_feature import OpenTopoDataRetryFeature
 from opentopodata_sdk.feature.test_feature import OpenTopoDataTestFeature
+from opentopodata_sdk.feature.timeout_feature import OpenTopoDataTimeoutFeature
 
 
 _FEATURES = {
     "base": lambda: OpenTopoDataBaseFeature(),
+    "ratelimit": lambda: OpenTopoDataRatelimitFeature(),
+    "retry": lambda: OpenTopoDataRetryFeature(),
     "test": lambda: OpenTopoDataTestFeature(),
+    "timeout": lambda: OpenTopoDataTimeoutFeature(),
 }
 
 

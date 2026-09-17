@@ -105,12 +105,12 @@ local results, err = client:GetElevation():list()
 
 | Language | Package | Install |
 | --- | --- | --- |
-| TypeScript | `@voxgig-sdk/open-topo-data-sdk` | publish pending — [install from git tag](https://github.com/voxgig-sdk/open-topo-data-sdk/releases) |
-| Python | `voxgig-sdk-open-topo-data` | publish pending — [install from git tag](https://github.com/voxgig-sdk/open-topo-data-sdk/releases) |
-| PHP | `voxgig-sdk/open-topo-data` | publish pending — [install from git tag](https://github.com/voxgig-sdk/open-topo-data-sdk/releases) |
+| TypeScript | `@voxgig-sdk/open-topo-data-sdk` | publish pending — [install from git tag](https://github.com/voxgig-sdk/open-topo-data-sdk/tags) |
+| Python | `voxgig-sdk-open-topo-data` | publish pending — [install from git tag](https://github.com/voxgig-sdk/open-topo-data-sdk/tags) |
+| PHP | `voxgig-sdk/open-topo-data` | publish pending — [install from git tag](https://github.com/voxgig-sdk/open-topo-data-sdk/tags) |
 | Golang | `github.com/voxgig-sdk/open-topo-data-sdk/go` | `go get github.com/voxgig-sdk/open-topo-data-sdk/go@latest` |
-| Ruby | `voxgig-sdk-open-topo-data` | publish pending — [install from git tag](https://github.com/voxgig-sdk/open-topo-data-sdk/releases) |
-| Lua | `voxgig-sdk-open-topo-data` | publish pending — [install from git tag](https://github.com/voxgig-sdk/open-topo-data-sdk/releases) |
+| Ruby | `voxgig-sdk-open-topo-data` | publish pending — [install from git tag](https://github.com/voxgig-sdk/open-topo-data-sdk/tags) |
+| Lua | `voxgig-sdk-open-topo-data` | publish pending — [install from git tag](https://github.com/voxgig-sdk/open-topo-data-sdk/tags) |
 | Go CLI | `github.com/voxgig-sdk/open-topo-data-sdk/go-cli` | `go install github.com/voxgig-sdk/open-topo-data-sdk/go-cli/cmd/open-topo-data@latest` |
 | Go MCP server | `github.com/voxgig-sdk/open-topo-data-sdk/go-mcp` | `go get github.com/voxgig-sdk/open-topo-data-sdk/go-mcp@latest` |
 

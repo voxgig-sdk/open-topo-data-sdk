@@ -127,9 +127,9 @@ class Config {
 
     entity: {
       
-      get_elevation: {
-      },
-
+        get_elevation: {
+        },
+  
     }
   }
 
